@@ -1,0 +1,13 @@
+.header_main{
+    display: flex;
+    padding: 30px;
+    width: 100%;
+    background: #563D7C;
+    color: #FFF;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.header_main > h1, .header_main > h2{
+    font-size: 1.5em;
+}
