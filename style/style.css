@@ -40,3 +40,85 @@
     background-color: #FFF;
     color: #000;
 }
+
+/*======= LISTA DE CURSOS ========*/
+.main_content {
+    max-width: calc(100% - 40px);
+    padding: 0 20px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.main_content > header {
+    flex-basis: 100%;
+    text-align: center;
+}
+.main_content > header > h2 {
+    font-size: 2.0em;
+    margin-bottom: 50px;
+}
+.main_content_products {
+    flex-basis: calc(50% - 20px);
+    margin-bottom: 20px;
+}
+.main_content_products > header > h4 {
+    color: #563D7C;
+    font-weight: 700;
+    margin: 10px 0;
+    font-size: 1.4em;
+}
+.main_content_products > header > p, .main_content_products > p{
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+.main_content_products > header > img {
+    width: 100%;
+    opacity: 0.9;
+}
+
+/*=========== OPTIN ===========*/
+.main_optin {
+    width: 100%;
+    background: #563D7C;
+    margin: 30px 0;
+}
+.main_optin_content {
+    max-width: calc(1300px - 40px);
+    padding: 40px 20px;
+    margin: 0 auto;
+    display: flex;
+}
+.main_optin_content header, .main_optin_content form{
+    flex-basis: 50%;
+}
+.main_optin_content header h2 {
+    margin-bottom: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.main_optin_content header h2, .main_optin_content p {
+    color: #FFF;
+    margin-right: 40px;
+    text-align: right;
+}
+.main_optin_content > form {
+    display: flex;
+    justify-content: space-between;
+}
+.main_optin_content > form > input[type=text], .main_optin_content > form > input[type=email] {
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding: 0 10px;
+    border: none;
+}
+.btn {
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background: #28a745;
+    color: #FFF;
+    padding: 0 20px;
+    border: none;
+}

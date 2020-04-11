@@ -1,6 +1,6 @@
 <?php
 
-namespace ProjectStore;
+namespace Source\Interfaces;
 
 interface Produce
 {

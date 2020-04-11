@@ -1,8 +1,8 @@
 <?php
 
-namespace ProjectStore;
+namespace Source\People;
 
-use ProjectStore\CeoInterface;
+use Source\Interfaces\CeoInterface;
 
 class Ceo implements CeoInterface
 {
@@ -78,6 +78,20 @@ class Ceo implements CeoInterface
     public function getFacebookAccount()
     {
         return $this->facebookAccount;
+    }
+    
+    public function setInstagramAccount($instagramAccount)
+    {
+        $strip = filter_var($instagramAccount, FILTER_SANITIZE_STRIPPED);
+        $sanInstagram = filter_var($strip, FILTER_SANITIZE_URL);
+        if ($sanInstagram) {
+            $this->instagramAccount = $sanInstagram;
+        }
+    }
+    
+    public function getInstagramAccount()
+    {
+        return $this->instagramAccount;
     }
     
     public function showAddressCeo()

@@ -1,9 +1,9 @@
 <?php
 
-namespace ProjectStore;
+namespace Source\Company;
 
-use ProjectStore\Ceo;
-use ProjectStore\Manufacturered;
+use Source\Interfaces\CeoInterface;
+use Source\Interfaces\Manufacturered;
 
 class Manufacturer implements Manufacturered
 {

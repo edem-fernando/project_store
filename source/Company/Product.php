@@ -1,9 +1,9 @@
 <?php
 
+namespace Source\Company;
 
-namespace ProjectStore;
-
-use ProjectStore\Produce;
+use Source\Interfaces\Produce;
+use Source\Interfaces\Manufacturered;
 
 class Product implements Produce
 {

@@ -1,7 +1,7 @@
 <?php
 
 spl_autoload_register(function ($class) {
-    $namespace = "ProjectStore\\";
+    $namespace = "Source\\";
     $baseDir   = __DIR__ . '/';
     $len       = strlen($namespace);
     
