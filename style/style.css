@@ -57,6 +57,7 @@
 .main_content > header > h2 {
     font-size: 2.0em;
     margin-bottom: 50px;
+    color: #333
 }
 .main_content_products {
     flex-basis: calc(50% - 20px);
@@ -122,3 +123,166 @@
     padding: 0 20px;
     border: none;
 }
+
+/*======= DOBRA DA ESCOLA =======*/
+.main_school {
+    width: 100%;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+.main_content_school {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0px 20px;
+    flex-wrap: wrap;
+    /*display: flex;
+    justify-content: space-between;*/
+}
+.main_content_school > header{
+    padding: 40px 0px;
+    text-align: center;
+}
+.main_content_school > header > h2 , .main_content_school_awards > header > h4{
+    font-size: 2.2em;
+    color: #333;
+}
+.main_content_school_description { margin: 30px 0px; }
+.main_content_school_description > header{ 
+    margin-top: -30px; 
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+.main_content_school_description > header > h4 { 
+    font-size: 1.6em; 
+    color: #333;
+}
+.main_content_school_description > p{
+    color: #333;
+    font-size: 1.2em;
+    margin-top: 30px;
+}
+.main_content_school_awards {
+    margin: 50px 0px;
+}
+.main_content_school_awards > header { text-align: center;}
+.main_content_school_awards > header > h4 {
+    font-size: 2.2em;
+    color: #333;
+}
+.main_content_school_awards {
+    background-color: #EBEBEB;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 10px 0px;
+}
+.box_awards {
+    margin: 20px 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.box_awards > article{
+    flex-basis: 50%;
+    margin: 10px 0px;
+}
+.main_content_school_address {
+    flex-basis: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.main_content_school_address > header > h4 { font-size: 2em; }
+.main_content_school_address > p { font-size:  1.8em; }
+
+/*======= TUTOR ======*/
+.main_tutor {
+    width: 100%;
+    background-color: #563D7C;
+}
+.main_content_school_tutor {
+    max-width: calc(1300px - 80px);
+    padding: 40px;
+    margin: 0 auto;
+    color: #FFF;
+    text-align: center;
+}
+.main_content_school_tutor > header > h4{
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+.main_content_school_tutor_description > header > h5 {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+.main_content_school_tutor_description > p {
+    margin-bottom: 20px;
+    padding: 0 20px;
+    font-size: 1.2em;
+}
+.main_tutor_content_img {
+    margin: 20px auto;
+}
+.main_tutor_content_img  img{
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding: 3px;
+    max-width: 350px; 
+    background-color: #000;
+}
+.main_content_school_tutor_network {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #FFF;
+    color: #563D7C;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    display: flex;
+    padding: 20px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.main_content_school_tutor_network > header{ 
+    flex-basis: 100%;
+    font-size: 1.4em;
+    margin-bottom: 20px;
+}
+.main_content_school_tutor_network > header > h5 { font-weight: 700; }
+.tutor_social_network { 
+    background: #563D7C;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 10px 20px;
+}
+.tutor_social_network > h6, .tutor_social_network > h6 > a {
+    color: #FFF;
+}
+
+/*===== CTA =====*/
+.footer_cta {
+    width: 100%;
+    background: #F7F7F7;
+}
+.footer_cta_header{
+    max-width: 1300px;
+    padding: 40px 20px;
+    text-align: center;
+    color: #333;
+}
+.footer_cta_header > header {
+    font-size: 1.6em;
+    font-weight: 700 !important;
+}
+.footer_cta_header > h3{margin-top: 50px;}
+.footer_cta_header > h3 > a{
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 10px 40px;
+    background: #563D7C;
+    color: #FFF;
+    font-size: 1.2em;
+}
+/*===== FOOTER =====*/

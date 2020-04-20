@@ -109,118 +109,163 @@ $products[3] = new Source\Company\Product("Bootstrap", '249.55', $manufacturer);
                 </div>
             </article>
             
-            <section class="main_content_school">
-                <header>
-                    <h2>Conheça um pouco mais sobre a escola</h2>
-                </header>
-                
-                <article class="main_content_school_description">
+            <div class='main_school'>
+                <section class="main_content_school">
                     <header>
-                        <h4><?=$manufacturer->getName(); ?></h4>
-                        <h4><?=$manufacturer->getCeo()->getName(); ?></h4>
-                        <h4><?=$manufacturer->getSector(); ?></h4>
-                    </header>
-                    <p>
-                        Fundada em 2015, por nosso CEO <?=$manufacturer->getCeo()->getName(); ?>.
-                        O intuito, no começo, era ser escola EAD referência em ensino de programação e marketing digital no norte e Nordeste.
-                        Hoje estamos crescendo cada dia mais, graças aos nossos esforços, e aos nossos queridos alunos.
-                    </p>
-                </article>
-                
-                <section class="main_content_school_awards">
-                    <header>
-                        <h4>Conheça nossos prêmios</h4>
+                        <h2>Conheça um pouco mais sobre a escola</h2>
                     </header>
                     
-                    <article>
+                    <article class="main_content_school_description">
                         <header>
-                            <h5 class='icon-trophy'>Qualidade e Excelência - Master Pesquisas</h5>
+                            <h4><?=$manufacturer->getName(); ?></h4>
+                            <h4>CEO <?=$manufacturer->getCeo()->getName(); ?></h4>
+                            <h4><?=$manufacturer->getSector(); ?></h4>
                         </header>
+                        <p>
+                            Fundada em 2015, por nosso CEO <?=$manufacturer->getCeo()->getName(); ?>.
+                            O intuito, no começo, era ser escola EAD referência em ensino de programação e marketing digital no norte e Nordeste.
+                            Hoje estamos crescendo cada dia mais, graças aos nossos esforços, e aos nossos queridos alunos.
+                        </p>
                     </article>
                     
-                    <article>
+                    <section class="main_content_school_awards">
                         <header>
-                            <h5 class='icon-trophy'>Prêmio Diamante - Master Pesquisas</h5>
+                            <h4>Conheça nossos prêmios</h4>
                         </header>
-                    </article>
+                        
+                        <div class='box_awards'>
+                            <article>
+                                <header>
+                                    <h5 class='icon-trophy'>Qualidade e Excelência - Master Pesquisas</h5>
+                                </header>
+                            </article>
+                            
+                            <article>
+                                <header>
+                                    <h5 class='icon-trophy'>Prêmio Diamante - Master Pesquisas</h5>
+                                </header>
+                            </article>
+                            
+                            <article>
+                                <header>
+                                    <h5 class='icon-trophy'>Medalha de Ouro a Excelência - LAQI</h5>
+                                </header>
+                            </article>
+                            
+                            <article>
+                                <header>
+                                    <h5 class='icon-trophy'>Melhor Plataforma EAD - Digital Awards</h5>
+                                </header>
+                            </article>
+                            
+                            <article>
+                                <header>
+                                    <h5 class='icon-trophy'>Qualidade e Atendimento - Master Pesquisas</h5>
+                                </header>
+                            </article>
+                            
+                            <article>
+                                <header>
+                                    <h5 class='icon-trophy'>Estrela do Sul - Master Pesquisas</h5>
+                                </header>
+                            </article>
+                            
+                            <article>
+                                <header>
+                                    <h5 class='icon-trophy'>Brazil Quality Certification - LAQI</h5>
+                                </header>
+                            </article>
+
+                            <article>
+                                <header>
+                                    <h5 class='icon-trophy'>America Latina Qualification - LAQI</h5>
+                                </header>
+                            </article>
+                        </div>
+                    </section>
                     
-                    <article>
+                    <article class="main_content_school_address">
                         <header>
-                            <h5 class='icon-trophy'>Medalha de Ouro a Excelência - LAQI</h5>
+                            <h4 class="icon-map2">Nos encontre</h4>
                         </header>
-                    </article>
-                    
-                    <article>
-                        <header>
-                            <h5 class='icon-trophy'>Melhor Plataforma EAD - Digital Awards</h5>
-                        </header>
-                    </article>
-                    
-                    <article>
-                        <header>
-                            <h5 class='icon-trophy'>Qualidade e Atendimento - Master Pesquisas</h5>
-                        </header>
-                    </article>
-                    
-                    <article>
-                        <header>
-                            <h5 class='icon-trophy'>Estrela do Sul - Master Pesquisas</h5>
-                        </header>
-                    </article>
-                    
-                    <article>
-                        <header>
-                            <h5 class='icon-trophy'>Brazil Quality Certification - LAQI</h5>
-                        </header>
+                        <p>
+                            <a  title='nosso endereço' alt='nosso endereço' 
+                                href="https://www.google.com/maps/search/Avenida+Maia,+N%C2%BA+22,+bairro+Litor%C3%A2nea/@-2.5062442,-44.2953628,14z/data=!3m1!4b1"
+                                target="a_blank"
+                            >
+                                <?=$manufacturer->showAddress() ;?>
+                            </a>
+                        </p>
                     </article>
                 </section>
-                
-                <article class="main_content_school_address">
-                    <header>
-                        <h4 class="icon-map2">Nos encontre</h4>
-                    </header>
-                    <p><?=$manufacturer->showAddress() ;?></p>
-                </article>
-                
+            </div>
+
+            <div class='main_tutor'>
                 <section class="main_content_school_tutor">
                     <header>
-                        <h4>Seu tutor na jornada de desenvolvedor WEB.</h4>
+                        <h4>Conheça o <?=$manufacturer->getCeo()->getName() ;?></h4>    
                     </header>
                     
                     <article class="main_content_school_tutor_description">
                         <header>
-                            <h5><?=$manufacturer->getCeo()->getName() ;?></h5>
-                            <p><?=$manufacturer->getCeo()->getDescription() ;?></p>
+                            <h5>Seu tutor na jornada de desenvolvimento WEB.</h5>
+                            <div class="main_tutor_content_img">
+                                <img src="_img/eu.jpg" alt="<?=$manufacturer->getCeo()->getName() ;?> seu tutor" title="<?=$manufacturer->getCeo()->getName() ;?> seu tutor">
+                            </div>
                         </header>
+                        <p><?=$manufacturer->getCeo()->getDescription() ;?></p>
                     </article>
-                    
+                            
                     <article class="main_content_school_tutor_network">
                         <header>
                             <h5>Minhas redes sociais</h5>
                         </header>
-                        <h6 class="icon-facebook2">
-                            <a href="<?=$manufacturer->getCeo()->getFacebookAccount() ;?>" target="_blank">Facebook</a>
-                        </h6>
-                        <h6 class="icon-google-plus2">
-                            <a href="#" target="_blank">Google+</a>
-                        </h6>
-                        <h6 class="icon-instagram">
-                            <a href="<?=$manufacturer->getCeo()->getInstagramAccount() ;?>" target="_blank">Instagram</a>
-                        </h6>
+                        
+                        <div class='tutor_social_network'>
+                            <h6 class="icon-facebook2">
+                                <a 
+                                    href="<?=$manufacturer->getCeo()->getFacebookAccount() ;?>" target="_blank"
+                                    title="Facebook de <?=$manufacturer->getCeo()->getName();?>"
+                                    alt="Facebook de <?=$manufacturer->getCeo()->getName();?>"
+                                >
+                                    Facebook
+                                </a>
+                            </h6>
+                        </div>
+                        
+                        <div class='tutor_social_network'>
+                            <h6 class="icon-google-plus2">
+                                <a href="#" target="_blank">Google+</a>
+                            </h6>
+                        </div>
+
+                        <div class='tutor_social_network'>
+                            <h6 class="icon-instagram">
+                                <a alt="Instagram de 
+                                    <?=$manufacturer->getCeo()->getName() ;?>" 
+                                    title="Instagram de <?=$manufacturer->getCeo()->getName();?>" 
+                                    href="<?=$manufacturer->getCeo()->getInstagramAccount() ;?>" target="_blank"
+                                >
+                                    Instagram
+                                </a>
+                            </h6>
+                        </div>
                     </article>
                 </section>
-            </section>
+            </div>
         </main>
         
         <footer class="footer">
             <!-- CTA -->
-            <article class="footer_header">
-                <header>
-                    <h2>Quer receber o nosso conteúdo exclusivo? Assine nossa lista VIP :)</h2>
-                </header>
-                
-                <h3><a href="#">Entrar para lista VIP</a></h3>
-            </article>
+            <div class='footer_cta'>
+                <article class="footer_cta_header">
+                    <header>
+                        <h2>Quer receber o nosso conteúdo exclusivo? Assine nossa lista VIP :)</h2>
+                    </header>
+                    
+                    <h3><a href="#">Entrar para lista VIP</a></h3>
+                </article>
+            </div>
             
             <section class="footer_content">
                 <header>
