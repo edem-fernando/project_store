@@ -54,3 +54,9 @@ $('.footer_cta_header > h3 > a').on('mouseenter', function(event) {
         color: '#FFF'
     });
 });
+
+$(".main_content_school_description > header > h4 > a").add('.footer_content_menu > ul > li > a').add('.footer_content_links > ul > li > a').on('mouseenter', function(event) { 
+    $(this).css('text-decoration', 'underline');
+}).on('mouseout', function(event) {
+    $(this).css('text-decoration', 'none');
+});

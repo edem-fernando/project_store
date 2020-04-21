@@ -117,9 +117,18 @@ $products[3] = new Source\Company\Product("Bootstrap", '249.55', $manufacturer);
                     
                     <article class="main_content_school_description">
                         <header>
-                            <h4><?=$manufacturer->getName(); ?></h4>
-                            <h4>CEO <?=$manufacturer->getCeo()->getName(); ?></h4>
-                            <h4><?=$manufacturer->getSector(); ?></h4>
+                            <h4>
+                                <a class='icon-facebook2' href="<?=$manufacturer->getCeo()->getFacebookAccount(); ?>">
+                                    Facebook
+                                </a>
+                            </h4>
+                            <h4>
+                                <a class='icon-instagram' href="<?=$manufacturer->getCeo()->getInstagramAccount() ;?>">Instagram</a></h4>
+                            <h4>
+                                <a class='icon-trello' href="<?=$manufacturer->getCeo()->getFacebookAccount(); ?>">
+                                    Trello
+                                </a>
+                            </h4>
                         </header>
                         <p>
                             Fundada em 2015, por nosso CEO <?=$manufacturer->getCeo()->getName(); ?>.
@@ -272,7 +281,7 @@ $products[3] = new Source\Company\Product("Bootstrap", '249.55', $manufacturer);
                     <h2>Quer saber mais?</h2>
                 </header>
                 
-                <article class="footer_content_links">
+                <article class="footer_content_menu">
                     <header>
                         <h3>Nossas páginas</h3>
                     </header>
@@ -308,6 +317,10 @@ $products[3] = new Source\Company\Product("Bootstrap", '249.55', $manufacturer);
                 </article>
             </section>
         </footer>
+        
+        <div class="footer_rigths">
+            <p>Todos os direitos reservados à Core Company ®</p>
+        </div>
         
         <script src="script/jquery.js"></script>
         <script src="script/script.js"></script>
