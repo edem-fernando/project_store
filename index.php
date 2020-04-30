@@ -21,6 +21,9 @@ $products[1] = new Source\Company\Product("HTML5 e CSS3", '249.55', $manufacture
 $products[2] = new Source\Company\Product("jQuery", '349.99', $manufacturer);
 $products[3] = new Source\Company\Product("Bootstrap", '249.55', $manufacturer);
 
+$user_ceo = new \Source\Models\Ceo();
+$ceo_new = $user_ceo->search_by_cpf("61334419337");
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -131,7 +134,7 @@ $products[3] = new Source\Company\Product("Bootstrap", '249.55', $manufacturer);
                             </h4>
                         </header>
                         <p>
-                            Fundada em 2015, por nosso CEO <?=$manufacturer->getCeo()->getName(); ?>.
+                            Fundada em 2015, por nosso CEO <?=$ceo_new->nome; ?>.
                             O intuito, no começo, era ser escola EAD referência em ensino de programação e marketing digital no norte e Nordeste.
                             Hoje estamos crescendo cada dia mais, graças aos nossos esforços, e aos nossos queridos alunos.
                         </p>
