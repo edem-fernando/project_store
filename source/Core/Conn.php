@@ -1,7 +1,7 @@
 <?php
 
 
-namespace  Source\Database;
+namespace Source\Core;
 
 
 use \PDO;
@@ -13,12 +13,11 @@ class Conn
     private const DBNAME = 'project_store';
     private const USER = 'root';
     private const PASSWD = '';
-    private const OPTIONS = 
-    [
-        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-        PDO::ATTR_CASE           => PDO::CASE_NATURAL,
-        PDO::ATTR_ERRMODE        => PDO::ERRMODE_EXCEPTION,
+    private const OPTIONS = [
+        PDO::MYSQL_ATTR_INIT_COMMAND    => 'SET NAMES utf8',
+        PDO::ATTR_DEFAULT_FETCH_MODE    => PDO::FETCH_OBJ,
+        PDO::ATTR_CASE                  => PDO::CASE_NATURAL,
+        PDO::ATTR_ERRMODE               => PDO::ERRMODE_EXCEPTION,
     ];
 
     private static $instance;

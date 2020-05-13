@@ -1,7 +1,7 @@
 <?php
 
-require __DIR__ . "/Config/config.php";
-require __DIR__ . "/Helpers/helpers.php";
+require __DIR__ . "/Support/config.php";
+require __DIR__ . "/Support/helpers.php";
 
 spl_autoload_register(function ($class) {
     $namespace = "Source\\";

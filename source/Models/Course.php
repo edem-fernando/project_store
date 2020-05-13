@@ -4,8 +4,10 @@
 namespace Source\Models;
 
 
-class Course extends Model
-{
+use Source\Core\Model;
+
+class Course extends Model {
+
     protected static $safe = ["id_cursos", "criado_em", "editado_em"];
     private static $table = "cursos";
 

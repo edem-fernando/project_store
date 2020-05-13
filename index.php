@@ -43,7 +43,7 @@ $ceo_new = $user_ceo->search_by_cpf("61334419337");
                         <li><a href="#" title="Home">Home</a></li>
                         <li><a href="#" title="Home">A empresa</a></li>
                         <li><a href="#" title="Home">Contatos</a></li>
-                        <li><a href="#" title="Home">Blog Pessoal</a></li>
+                        <li><a href="https://localhost/project_store/login" title="Home">Login</a></li>
                     </ul>
                 </nav>
             </div>
