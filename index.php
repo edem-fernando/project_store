@@ -21,8 +21,12 @@ $products[1] = new Source\Company\Product("HTML5 e CSS3", '249.55', $manufacture
 $products[2] = new Source\Company\Product("jQuery", '349.99', $manufacturer);
 $products[3] = new Source\Company\Product("Bootstrap", '249.55', $manufacturer);
 
-$user_ceo = new \Source\Models\Ceo();
-$ceo_new = $user_ceo->search_by_cpf("61334419337");
+
+$new_ceo = new \Source\Models\Ceo();
+$user_ceo = $new_ceo->search_by_id(1);
+
+$tutor = new \Source\Models\Tutor();
+$user_tutor = $tutor->search_by_name("Edem Fernando");
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -157,7 +161,7 @@ $ceo_new = $user_ceo->search_by_cpf("61334419337");
                             </h4>
                         </header>
                         <p>
-                            Fundada em 2015, por nosso CEO <?= $ceo_new->nome; ?>.
+                            Fundada em 2015, por nosso CEO <?=$user_ceo->nome; ?>.
                             O intuito, no começo, era ser escola EAD referência em ensino de programação e marketing digital no norte e Nordeste.
                             Hoje estamos crescendo cada dia mais, graças aos nossos esforços, e aos nossos queridos alunos.
                         </p>
@@ -238,17 +242,17 @@ $ceo_new = $user_ceo->search_by_cpf("61334419337");
             <div class='main_tutor'>
                 <section class="main_content_school_tutor">
                     <header>
-                        <h4>Conheça o <?= $manufacturer->getCeo()->getName(); ?></h4>    
+                        <h4>Conheça o <?=$user_tutor->nome; ?></h4>    
                     </header>
 
                     <article class="main_content_school_tutor_description">
                         <header>
                             <h5>Seu tutor na jornada de desenvolvimento WEB.</h5>
                             <div class="main_tutor_content_img">
-                                <img src="_img/eu.jpg" alt="<?= $manufacturer->getCeo()->getName(); ?> seu tutor" title="<?= $manufacturer->getCeo()->getName(); ?> seu tutor">
+                                <img src="_img/eu.jpg" alt="<?=$user_tutor->nome; ?> seu tutor" title="<?=$user_tutor->nome;; ?> seu tutor">
                             </div>
                         </header>
-                        <p><?= $manufacturer->getCeo()->getDescription(); ?></p>
+                        <p><?=$user_tutor->descricao_tutor;?></p>
                     </article>
 
                     <article class="main_content_school_tutor_network">

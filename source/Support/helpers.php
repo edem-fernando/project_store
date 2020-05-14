@@ -6,11 +6,12 @@
 ##################
 
 /**
- * _toBrl(): Converte qualquer número para o formato brasileiro
+ * _TOBRL(): Converte qualquer número para o formato brasileiro
  * @param float $value
  * @return string
  */
-function _toBrl(float $value) {
+function _toBrl(float $value) 
+{
     return "R$ " . number_format($value, "2", ",", ".");
 }
 
@@ -20,16 +21,49 @@ function _toBrl(float $value) {
 ####################
 
 /**
- * is_email(): verifica se o e-mail informado está válido
+ * IS_CPF(): Verifica se o CPF informado é válido
+ * @param string $cpf
+ * @return bool
+ */
+function is_cpf(string $cpf): bool 
+{
+    if (empty($cpf)) {
+        return null;
+    }
+    
+    $cpf = preg_replace('/[^0-9]/is', '', $cpf);
+    if (strlen($cpf) != 11) {
+        return false;
+    }
+
+    if (preg_match('/(\d)\1{10}/', $cpf)) {
+        return false;
+    }
+
+    for ($t = 9; $t < 11; $t++) {
+        for ($d = 0, $c = 0; $c < $t; $c++) {
+            $d += $cpf{$c} * (($t + 1) - $c);
+        }
+        $d = ((10 * $d) % 11) % 10;
+        if ($cpf{$c} != $d) {
+            return false;
+        }
+    }
+    return true;
+}
+
+/**
+ * IS_EMAIL(): verifica se o e-mail informado está válido
  * @param string $email
  * @return bool
  */
-function is_email(string $email): bool {
+function is_email(string $email): bool 
+{
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
 /**
- * is_passwd(): Verifica se a senha contém a quantidade de caracteres permitidos
+ * IS_PASSWD(): Verifica se a senha contém a quantidade de caracteres permitidos
  * @param string $passwd
  * @return bool
  */
@@ -42,48 +76,53 @@ function is_passwd(string $passwd): bool
 }
 
 /**
- * passwd(): gera uma hash de senha
+ * PASSWD(): gera uma hash de senha
  * @param string $password
  * @return string
  */
-function passwd(string $password): string {
+function passwd(string $password): string 
+{
     return password_hash($password, CONF_PASSWD_ALGO, CONF_PASSWD_OPTIONS);
 }
 
 /**
- * passwd_verify(): verifica se a senha e a hash são compatíveis
+ * PASSWD_VERIFY(): verifica se a senha e a hash são compatíveis
  * @param string $password
  * @param string $hash
  * @return bool
  */
-function passwd_verify(string $password, string $hash): bool {
+function passwd_verify(string $password, string $hash): bool 
+{
     return password_verify($password, $hash);
 }
 
 /**
- * passwd_rehash(): verifica se é necessário gerar outra hash
+ * PASSWD_REHASH(): verifica se é necessário gerar outra hash
  * @param string $password
  * @return bool
  */
-function passwd_rehash(string $password): bool {
+function passwd_rehash(string $password): bool 
+{
     return password_needs_rehash($password, CONF_PASSWD_ALGO, CONF_PASSWD_OPTIONS);
 }
 
 /**
- * csrf(): Cria um input com o value do csrf da classe Session para monitoramento
+ * CSRF_INPUT(): Cria um input com o value do csrf da classe Session para monitoramento
  * @return string
  */
-function csrf_input(): string {
+function csrf_input(): string 
+{
     session()->csrf();
     return "<input type='hidden' name='csrf' value='" . (session()->csrf_token ?? "") . "'/>";
 }
 
 /**
- * csrf_verify(): Verifica se os token's são iguais...
+ * CSRF_VERIFY(): Verifica se os token's são iguais...
  * @param array $request
  * @return bool
  */
-function csrf_verify($request): bool {
+function csrf_verify($request): bool 
+{
     if (empty(session()->csrf_token) || empty($request['csrf']) || $request['csrf'] != session()->csrf_token) {
         return false;
     } else {
@@ -97,11 +136,12 @@ function csrf_verify($request): bool {
 ##################
 
 /**
- * str_slug(): Converte uma string para url
+ * STR_SLUG(): Converte uma string para url
  * @param string $string
  * @return string
  */
-function str_slug(string $string): string {
+function str_slug(string $string): string 
+{
     $string = filter_var(mb_strtolower($string), FILTER_SANITIZE_STRIPPED);
     $formats = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª';
     $replace = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr                                 ';
@@ -111,43 +151,47 @@ function str_slug(string $string): string {
 }
 
 /**
- * str_studly_case(): Converte uma string para o padrão Studlycase 
+ * STR_STUDLY_CASE(): Converte uma string para o padrão Studlycase 
  * @param string $string
  * @return string
  */
-function str_studly_case(string $string): string {
+function str_studly_case(string $string): string 
+{
     $string = str_slug($string);
     $studly_case = str_replace(" ", "", mb_convert_case(str_replace("-", " ", $string), MB_CASE_TITLE));
     return $studly_case;
 }
 
 /**
- * str_camel_case(): Converte uma string para o padrão camelCase 
+ * STR_CAMEL_CASE(): Converte uma string para o padrão camelCase 
  * @param string $string
  * @return string
  */
-function str_camel_case(string $string): string {
+function str_camel_case(string $string): string 
+{
     return lcfirst(str_studly_case($string));
 }
 
 /**
- * str_convert_title(): Converte uma os primeiros caracteres das palavras
+ * STR_CONVERT_TITLE(): Converte uma os primeiros caracteres das palavras
  * de uma string para maiúsculo
  * @param string $string
  * @return string
  */
-function str_convert_title(string $string): string {
+function str_convert_title(string $string): string 
+{
     return mb_convert_case(filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS), MB_CASE_TITLE);
 }
 
 /**
- * str_limit_words(): Limita a quantidade de palavras em uma string
+ * STR_LIMIT_WORDS(): Limita a quantidade de palavras em uma string
  * @param string $string
  * @param int $limit
  * @param string $pointer
  * @return string
  */
-function str_limit_words(string $string, int $limit, string $pointer = "..."): string {
+function str_limit_words(string $string, int $limit, string $pointer = "..."): string 
+{
     $string = trim(filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS));
     $arr_words = explode(" ", $string);
     $num_words = count($arr_words);
@@ -161,13 +205,14 @@ function str_limit_words(string $string, int $limit, string $pointer = "..."): s
 }
 
 /**
- * str_limit_chars(): Limita a quantidade de caracteres em uma string
+ * STR_LIMIT_CHARS(): Limita a quantidade de caracteres em uma string
  * @param string $string
  * @param int $limit
  * @param string $pointer
  * @return string
  */
-function str_limit_chars(string $string, int $limit, string $pointer = "..."): string {
+function str_limit_chars(string $string, int $limit, string $pointer = "..."): string 
+{
     $string = trim(filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS));
 
     if (mb_strlen($string) <= $limit) {
@@ -189,7 +234,8 @@ function str_limit_chars(string $string, int $limit, string $pointer = "..."): s
  * @param string $path
  * @return string
  */
-function url(string $path): string {
+function url(string $path): string
+{
     if ($path[0] == "/") {
         return CONF_URL_BASE . "/" . mb_substr($path, 1);
     } else {
@@ -198,11 +244,12 @@ function url(string $path): string {
 }
 
 /**
- * redirect(): Direciona o usuário para a url informada
+ * REDIRECT(): Direciona o usuário para a url informada
  * @param string $url
  * @return void
  */
-function redirect(string $url): void {
+function redirect(string $url): void 
+{
     header("HTTP/1.1 302 Redirect");
     $location = url($url);
     if (filter_var($url, FILTER_VALIDATE_URL)) {
@@ -219,22 +266,23 @@ function redirect(string $url): void {
 ###   CORE   ###
 ################
 
-
 /** @return PDO */
-function db(): PDO {
+function db(): PDO 
+{
     return \Source\Core\Conn::getInstance();
 }
 
 /** @return \Source\Core\Session */
-function session(): \Source\Core\Session {
+function session(): \Source\Core\Session 
+{
     return new \Source\Core\Session();
 }
 
 /** @return \Source\Core\Message */
-function message(): \Source\Core\Message {
+function message(): \Source\Core\Message 
+{
     return new \Source\Core\Message();
 }
-
 
 
 ##################
@@ -242,6 +290,7 @@ function message(): \Source\Core\Message {
 ##################
 
 /** @return \Source\Models\User */
-function user(): \Source\Models\User {
+function user(): \Source\Models\User 
+{
     return new \Source\Models\User();
 }

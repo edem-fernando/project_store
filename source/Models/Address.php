@@ -6,10 +6,24 @@ namespace Source\Models;
 
 use Source\Core\Model;
 
-class Address extends Model {
-
+class Address extends Model 
+{
+    /**
+     * $safe: dados que não podem ser manipulados 
+     * @var static $safe
+     */
     protected static $safe = ["id_endereco", "criado_em", "editado_em"];
+    
+    /**
+     * $required: dados obrigatórios para a tabela no banco 
+     * @var static $required
+     */
     protected static $required = ["cidade", "uf", "bairro", "numero"];
+    
+    /**
+     * $table: nome da tabela no banco
+     * @var static $table
+     */
     private static $table = "endereco";
 
     /**
@@ -45,6 +59,17 @@ class Address extends Model {
         }
         return $search->fetchObject(__CLASS__);
     }
+    
+    /**
+     * SEARCH_BY_ID(): Faz um select no banco de dados através do id
+     * @param int $id
+     * @param string $columns
+     * @return Address | null
+     */
+    public function search_by_id(int $id, string $columns = "*"): ?Address 
+    {
+        return $this->search("id_endereco = :id_endereco", "id_endereco={$id}", $columns);
+    }
 
     /**
      * SEARCH_BY_CITY(): Faz um select no banco de dados através da cidade
@@ -76,7 +101,7 @@ class Address extends Model {
      */
     public function search_by_neighborhood(string $neighborhood, string $columns = "*") 
     {
-        return $this->search("bairro = :bairro", "bairro={$neighborhood}", $neighborhood);
+        return $this->search("bairro = :bairro", "bairro={$neighborhood}", $columns);
     }
     
     /**
@@ -88,7 +113,7 @@ class Address extends Model {
      */
     public function all(int $limit = 30, int $offset = 0, string $columns = "*"): ?array
     {
-        $all = $this->read("SELECT FROM " . self::$table . " LIMIT :l OFFSET : o", "l={$limit}&o={$offset}");
+        $all = $this->read("SELECT {$columns} FROM " . self::$table . " LIMIT :l OFFSET : o", "l={$limit}&o={$offset}");
         if ($this->fail() || !$all->rowCount()) {
             return null;
         }
@@ -108,24 +133,48 @@ class Address extends Model {
         
         // ADDRESS UPDATE
         if (!empty($this->id_endereco)) {
-            $address_number = $this->id_endereco;
-            if ($this->search("numero = :n AND id_endereco != :i", "n={$this->numero}&i={$address_id}")) {
+            $id_endereco = $this->id_endereco;
+            if ($this->search("numero = :n AND id_endereco != :i", "n={$this->numero}&i={$id_endereco}")) {
                 $this->message()->warning("O endereço informado já está cadastrado");
                 return null;
             }
             
-            $this->updated(self::$table, "id_endereco = :i", "i={$address_id}");
+            $this->updated(self::$table, $this->safe(),"id_endereco = :i", "i={$id_endereco}");
             if ($this->fail()) {
-                $this->message()->error("Error ao atualizar, por favor verifique os dados");
+                $this->message()->error("Error ao atualizar, por favor verifique os dados!");
                 return null;
             }
         }
         
         // ADDRESS INSERT
-        
+        if (empty($this->id_endereco)) {
+            $id_endereco = $this->insert(self::$table, $this->safe());
+            if ($this->fail()) {
+                $this->message()->error("Erro ao cadastrar endereço, verifique os dados");
+                return null;
+            }
+        }
+        $this->data = ($this->search_by_id($id_endereco))->data();
+        return $this;
     }
 
-    public function destroy() {
+    /**
+     * DESTROY(): Verifica se o id existe no banco de dados, e depois,
+     * o apaga do banco de dados
+     * @return Address | null
+     */
+    public function destroy(): ?Address
+    {
+        if (!empty($this->id_endereco)) {
+            $this->delete(self::$table, "id_endereco = :id_endereco", "id_endereco={$this->id_endereco}");
+        }
         
+        if ($this->fail()) {
+            $this->message()->error("Não foi possível remover o usuário, verifique os dados!");
+            return null;
+        }
+        $this->message = "Usuário removido com sucesso";
+        $this->data = null;
+        return $this;
     }
 }
