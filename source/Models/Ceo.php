@@ -6,6 +6,10 @@ namespace Source\Models;
 
 use Source\Core\Model;
 
+/**
+ * Ceo
+ * @package Ceo
+ */
 class Ceo extends Model 
 {
     /**
@@ -27,7 +31,7 @@ class Ceo extends Model
     private static $table = "ceo";
 
     /**
-     * BOOTSTRAP():
+     * BOOTSTRAP(): monta o objeto para persistir
      * @param string $name
      * @param string $cpf
      * @param string $email
@@ -102,13 +106,13 @@ class Ceo extends Model
      */
     public function all(int $limit = 30, int $offset = 0, string $columns = "*"): ?array
     {
-        $search_all = $this->read("SELECT {$columns} FROM " . self::$table . " LIMIT :l OFFSET :o", "l={$limit}&o={$offset}");
+        $all = $this->read("SELECT {$columns} FROM " . self::$table . " LIMIT :l OFFSET :o", "l={$limit}&o={$offset}");
 
-        if ($this->fail() || !$search_all->rowCount()) {
+        if ($this->fail() || !$all->rowCount()) {
             $this->message()->error("Não foi possível realizar a busca, tente mais tarde");
             return null;
         }
-        return $search_all->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
+        return $all->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
 
     /**
@@ -184,11 +188,12 @@ class Ceo extends Model
         if (!empty($this->id_ceo)) {
             $this->delete(self::$table, "id_ceo = :id_ceo", "id_ceo={$this->id_ceo}");
         }
-        
+
         if ($this->fail()) {
             $this->message()->error("Não foi possível remover o usuário, verifique os dados!");
             return null;
         }
+        
         $this->message()->success("Usuário removido com sucesso!");
         $this->data = null;
         return $this;

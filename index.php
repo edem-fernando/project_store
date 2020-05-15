@@ -249,7 +249,7 @@ $user_tutor = $tutor->search_by_name("Edem Fernando");
                         <header>
                             <h5>Seu tutor na jornada de desenvolvimento WEB.</h5>
                             <div class="main_tutor_content_img">
-                                <img src="_img/eu.jpg" alt="<?=$user_tutor->nome; ?> seu tutor" title="<?=$user_tutor->nome;; ?> seu tutor">
+                                <img src="_img/eu.jpg" alt="<?=$user_tutor->nome; ?> seu tutor" title="<?=$user_tutor->nome; ?> seu tutor">
                             </div>
                         </header>
                         <p><?=$user_tutor->descricao_tutor;?></p>

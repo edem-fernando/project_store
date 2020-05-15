@@ -6,13 +6,24 @@
 ##################
 
 /**
- * _TOBRL(): Converte qualquer número para o formato brasileiro
+ * _TOBRL(): Converte qualquer número para o formato brasileiro de moeda
  * @param float $value
  * @return string
  */
-function _toBrl(float $value) 
+function _toBrl(float $value): string
 {
     return "R$ " . number_format($value, "2", ",", ".");
+}
+
+/**
+ * _toCleanPrice(): Converte qualquer número para o formato do banco de dados
+ * @param float $price
+ * @return string
+ */
+function _toCleanPrice(string $price): string
+{
+    $format_price = str_replace($price, ",", ".");
+    return $format_price;
 }
 
 
@@ -24,7 +35,7 @@ function _toBrl(float $value)
  * IS_CPF(): Verifica se o CPF informado é válido
  * @param string $cpf
  * @return bool
- */
+
 function is_cpf(string $cpf): bool 
 {
     if (empty($cpf)) {
@@ -50,6 +61,16 @@ function is_cpf(string $cpf): bool
         }
     }
     return true;
+}*/
+
+/**
+ * IS_CNPJ(): Verifica se o CPF informado é válido
+ * @param type $cnpj
+ * @return bool
+ */
+function is_cnpj(string $cnpj): bool
+{
+    
 }
 
 /**
