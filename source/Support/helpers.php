@@ -70,7 +70,7 @@ function is_cpf(string $cpf): bool
  */
 function is_cnpj(string $cnpj): bool
 {
-    
+    return (empty($cnpj) ?? null);
 }
 
 /**
