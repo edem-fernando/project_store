@@ -6,7 +6,7 @@
 ##################
 
 /**
- * _TOBRL(): Converte qualquer número para o formato brasileiro de moeda
+ * _toBrl(): Converte qualquer número para o formato brasileiro de moeda
  * @param float $value
  * @return string
  */
@@ -32,16 +32,16 @@ function _toCleanPrice(string $price): string
 ####################
 
 /**
- * IS_CPF(): Verifica se o CPF informado é válido
+ * is_cpf(): Verifica se o CPF informado é válido
  * @param string $cpf
  * @return bool
-
+ */
 function is_cpf(string $cpf): bool 
 {
     if (empty($cpf)) {
         return null;
     }
-    
+
     $cpf = preg_replace('/[^0-9]/is', '', $cpf);
     if (strlen($cpf) != 11) {
         return false;
@@ -61,10 +61,10 @@ function is_cpf(string $cpf): bool
         }
     }
     return true;
-}*/
+}
 
 /**
- * IS_CNPJ(): Verifica se o CPF informado é válido
+ * is_cnpj(): Verifica se o CPF informado é válido
  * @param type $cnpj
  * @return bool
  */
@@ -74,7 +74,7 @@ function is_cnpj(string $cnpj): bool
 }
 
 /**
- * IS_EMAIL(): verifica se o e-mail informado está válido
+ * is_email(): verifica se o e-mail informado está válido
  * @param string $email
  * @return bool
  */
@@ -84,7 +84,7 @@ function is_email(string $email): bool
 }
 
 /**
- * IS_PASSWD(): Verifica se a senha contém a quantidade de caracteres permitidos
+ * is_passwd(): Verifica se a senha contém a quantidade de caracteres permitidos
  * @param string $passwd
  * @return bool
  */
@@ -97,7 +97,7 @@ function is_passwd(string $passwd): bool
 }
 
 /**
- * PASSWD(): gera uma hash de senha
+ * passwd(): gera uma hash de senha
  * @param string $password
  * @return string
  */
@@ -107,7 +107,7 @@ function passwd(string $password): string
 }
 
 /**
- * PASSWD_VERIFY(): verifica se a senha e a hash são compatíveis
+ * passwd_verify(): verifica se a senha e a hash são compatíveis
  * @param string $password
  * @param string $hash
  * @return bool
@@ -118,7 +118,7 @@ function passwd_verify(string $password, string $hash): bool
 }
 
 /**
- * PASSWD_REHASH(): verifica se é necessário gerar outra hash
+ * passwd_rehash(): verifica se é necessário gerar outra hash
  * @param string $password
  * @return bool
  */
@@ -128,7 +128,7 @@ function passwd_rehash(string $password): bool
 }
 
 /**
- * CSRF_INPUT(): Cria um input com o value do csrf da classe Session para monitoramento
+ * csrf_input(): Cria um input com o value do csrf da classe Session para monitoramento
  * @return string
  */
 function csrf_input(): string 
@@ -138,7 +138,7 @@ function csrf_input(): string
 }
 
 /**
- * CSRF_VERIFY(): Verifica se os token's são iguais...
+ * csrf_verify(): Verifica se os token's são iguais...
  * @param array $request
  * @return bool
  */
@@ -157,7 +157,7 @@ function csrf_verify($request): bool
 ##################
 
 /**
- * STR_SLUG(): Converte uma string para url
+ * str_slug(): Converte uma string para url
  * @param string $string
  * @return string
  */
@@ -172,7 +172,7 @@ function str_slug(string $string): string
 }
 
 /**
- * STR_STUDLY_CASE(): Converte uma string para o padrão Studlycase 
+ * str_studly_case(): Converte uma string para o padrão Studlycase 
  * @param string $string
  * @return string
  */
@@ -184,7 +184,7 @@ function str_studly_case(string $string): string
 }
 
 /**
- * STR_CAMEL_CASE(): Converte uma string para o padrão camelCase 
+ * str_camel_case(): Converte uma string para o padrão camelCase 
  * @param string $string
  * @return string
  */
@@ -194,7 +194,7 @@ function str_camel_case(string $string): string
 }
 
 /**
- * STR_CONVERT_TITLE(): Converte uma os primeiros caracteres das palavras
+ * str_convert_title(): Converte uma os primeiros caracteres das palavras
  * de uma string para maiúsculo
  * @param string $string
  * @return string
@@ -205,7 +205,7 @@ function str_convert_title(string $string): string
 }
 
 /**
- * STR_LIMIT_WORDS(): Limita a quantidade de palavras em uma string
+ * str_limit_words(): Limita a quantidade de palavras em uma string
  * @param string $string
  * @param int $limit
  * @param string $pointer
@@ -226,7 +226,7 @@ function str_limit_words(string $string, int $limit, string $pointer = "..."): s
 }
 
 /**
- * STR_LIMIT_CHARS(): Limita a quantidade de caracteres em uma string
+ * str_limit_chars(): Limita a quantidade de caracteres em uma string
  * @param string $string
  * @param int $limit
  * @param string $pointer
@@ -265,7 +265,7 @@ function url(string $path): string
 }
 
 /**
- * REDIRECT(): Direciona o usuário para a url informada
+ * redirect(): Direciona o usuário para a url informada
  * @param string $url
  * @return void
  */
@@ -287,22 +287,31 @@ function redirect(string $url): void
 ###   CORE   ###
 ################
 
-/** @return PDO */
+/** 
+ * @return PDO 
+ */
 function db(): PDO 
 {
     return \Source\Core\Conn::getInstance();
 }
 
-/** @return \Source\Core\Session */
+/** 
+ * @return \Source\Core\Session 
+ */
 function session(): \Source\Core\Session 
 {
     return new \Source\Core\Session();
 }
 
-/** @return \Source\Core\Message */
-function message(): \Source\Core\Message 
+###################
+###   SUPPORT   ###
+###################
+/** 
+ * @return \Source\Core\Message 
+ */
+function message(): \Source\Support\Message 
 {
-    return new \Source\Core\Message();
+    return new \Source\Support\Message();
 }
 
 
@@ -310,7 +319,9 @@ function message(): \Source\Core\Message
 ###   MODELS   ###
 ##################
 
-/** @return \Source\Models\User */
+/** 
+ * @return \Source\Models\User 
+ */
 function user(): \Source\Models\User 
 {
     return new \Source\Models\User();

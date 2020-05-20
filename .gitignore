@@ -1,1 +1,11 @@
 /nbproject/private/
+vendor/
+.idea/
+imgs
+_img
+composer.lock
+composer.phar
+assets/styles/fonts
+assets/styles/icomoon
+assets/style/icomoon/.DS_Store
+storage/

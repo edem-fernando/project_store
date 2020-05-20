@@ -1,12 +1,14 @@
 <?php
 
-
 namespace Source\Core;
-
 
 use \PDO;
 use \PDOException;
 
+/**
+ * Class Conn
+ * @package Source\Core
+ */
 class Conn
 {
     private const HOST = 'localhost';
@@ -20,17 +22,19 @@ class Conn
         PDO::ATTR_ERRMODE               => PDO::ERRMODE_EXCEPTION,
     ];
 
+    /** @var PDO */
     private static $instance;
 
-    /** @return PDO */
+    /** 
+     * @return PDO 
+     */
     public static function getInstance(): PDO
     {
         if (empty(self::$instance)) {
             try {
-                self::$instance = new PDO
-                (
-                    'mysql:host=' . self::HOST . ';dbname='. self::DBNAME,
-                    self::USER , self::PASSWD , self::OPTIONS
+                self::$instance = new PDO(
+                        'mysql:host=' . self::HOST . ';dbname=' . self::DBNAME,
+                        self::USER, self::PASSWD, self::OPTIONS
                 );
             } catch (PDOException $exception) {
                 die("Erro ao se conectar ao banco, tente mais tarde");

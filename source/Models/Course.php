@@ -4,6 +4,10 @@ namespace Source\Models;
 
 use Source\Core\Model;
 
+/**
+ * Class Course
+ * @package Source\Models
+ */
 class Course extends Model 
 {
 

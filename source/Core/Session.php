@@ -3,6 +3,9 @@
 
 namespace Source\Core;
 
+
+use Source\Support\Message;
+
 /**
  * Session
  * @package Session
@@ -39,28 +42,28 @@ class Session
     }
     
     /**
-     * ALL(): converte uma sessão para objeto
+     * all(): converte uma sessão para objeto
      * @return object | null
      */
     public function all(): ?object
     {
-        return (object)$_SESSION;
+        return (object) $_SESSION;
     }
     
     /**
-     * SET(): cria uma sessão
+     * set(): cria uma sessão
      * @param string $key
      * @param string $value
      * @return Session
      */
     public function set(string $key, string $value): Session
     {
-        $_SESSION[$key] = (is_array($value) ? (object)$value : $value);
+        $_SESSION[$key] = (is_array($value) ? (object) $value : $value);
         return $this;
     }
     
     /**
-     * UNSET(): Remove uma sessão
+     * unset(): Remove uma sessão
      * @param string $key
      * @return Session
      */
@@ -71,7 +74,7 @@ class Session
     }
     
     /**
-     * HAS(): verifica se há uma sessão
+     * has(): verifica se há uma sessão
      * @return bool
      */
     public function has(string $key): bool
@@ -79,7 +82,9 @@ class Session
         return isset($_SESSION[$key]);
     }
     
-    /**  @return Session */
+    /** 
+     * @return Session 
+     */
     public function regenerate(): Session
     {
         session_regenerate_id(true);
@@ -87,7 +92,7 @@ class Session
     }
     
     /**
-     * DESTROY(): destrói uma sessão
+     * destroy(): destrói uma sessão
      * @return Session
      */
     public function destroy(): Session
@@ -97,11 +102,11 @@ class Session
     }
     
     /**
-     * FLASH(): verifica se há uma sessão flash
+     * flash(): verifica se há uma sessão flash
      * depois a remove
-     * @return \Source\Core\Message | null
+     * @return Message | null
      */
-    public function flash(): ?\Source\Core\Message
+    public function flash(): ?Message
     {
         if ($this->has("flash")) {
             $flash = $this->flash;
@@ -112,7 +117,7 @@ class Session
     }
     
     /**
-     * CSRF(): cria uma sessão contra ataques csrf
+     * csrf(): cria uma sessão contra ataques csrf
      * @return void
      */
     public function csrf(): void

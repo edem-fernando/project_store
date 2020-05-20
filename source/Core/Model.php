@@ -5,33 +5,47 @@ namespace Source\Core;
 
 
 use \Source\Core\Conn;
+use Source\Support\Message;
 
 
 abstract class Model 
 {
+    /** @var array */
     protected $data;
+    
+    /** @var Message */
     protected $message;
+    
+    /** @var PDOException */
     protected $fail;
 
-    /** Model Construct */
+    /** 
+     * Model Construct 
+     */
     public function __construct() 
     {
-        $this->message = new \Source\Core\Message();
+        $this->message = new Message();
     }
     
-    /** @return object | null */
+    /** 
+     * @return object | null 
+     */
     protected function data(): ?object 
     {
         return $this->data;
     }
 
-    /** @return Message | null */
+    /** 
+     * @return Message | null 
+     */
     protected function message(): ?Message 
     {
         return $this->message;
     }
 
-    /** @return PDOException | null */
+    /** 
+     * @return PDOException | null 
+     */
     protected function fail(): ?\PDOException 
     {
         return $this->fail;
@@ -56,14 +70,16 @@ abstract class Model
         return ($this->data->$name ?? null);
     }
 
-    /** @param $name */
+    /** 
+     * @param $name 
+     */
     public function __isset($name) 
     {
         return isset($this->data->$name);
     }
 
     /**
-     * READ():Prepara a QUERY ler registros do banco
+     * read():Prepara a QUERY ler registros do banco
      * @param string $select
      * @param array $params
      * @return PDOStatement | null
@@ -88,7 +104,7 @@ abstract class Model
     }
 
     /**
-     * INSERT():Prepara a QUERY para insere registros no banco
+     * insert():Prepara a QUERY para insere registros no banco
      * @param string $table
      * @param array $data
      * @return int | null
@@ -98,7 +114,7 @@ abstract class Model
         try {
             $columns = implode(", ", array_keys($data));
             $values = ":" . implode(", :", array_keys($data));
-            
+
             $stmt = Conn::getInstance()->prepare("INSERT INTO {$table} ($columns) VALUES ($values)");
             $stmt->execute($this->filter($data));
             return Conn::getInstance()->lastInsertId();
@@ -109,7 +125,7 @@ abstract class Model
     }
 
     /**
-     * UPDATED():Prepara a QUERY para atualizar registros no banco
+     * updated():Prepara a QUERY para atualizar registros no banco
      * @param string $table
      * @param array $data
      * @param string $terms
@@ -123,13 +139,13 @@ abstract class Model
             foreach ($data as $bind => $value) {
                 $data_set[] = "{$bind} = :{$bind}";
             }
-            
+
             $data_set = implode(", ", $data_set);
             parse_str($params, $params);
-            
-            $stmt = Conn::getInstance()->prepare("UPDATE FROM {$table} SET {$data_set} WHERE {$params}");
+
+            $stmt = Conn::getInstance()->prepare("UPDATE {$table} SET {$data_set} WHERE {$terms}");
             $stmt->execute($this->filter(array_merge($data, $params)));
-            
+
             return ($stmt->rowCount() ?? 1);
         } catch (\PDOException $exception) {
             $this->fail = $exception;
@@ -138,7 +154,7 @@ abstract class Model
     }
 
     /**
-     * DELETE():Prepara a QUERY para excluir registros no banco
+     * delete():Prepara a QUERY para excluir registros no banco
      * @param string $table
      * @param string $terms
      * @param string $params
@@ -148,7 +164,7 @@ abstract class Model
     {
         try {
             parse_str($params, $params);
-            
+
             $stmt = Conn::getInstance()->prepare("DELETE FROM {$table} WHERE {$terms}");
             $stmt->execute($params);
             return ($stmt->rowCount() ?? 1);
@@ -159,7 +175,7 @@ abstract class Model
     }
 
     /**
-     * FILTER(): Remove caracteres especiais, para evitar códigos maliciosos
+     * filter(): Remove caracteres especiais, para evitar códigos maliciosos
      * @param array $data
      * @return array | null
      */
@@ -173,13 +189,13 @@ abstract class Model
     }
 
     /**
-     * SAFE(): Elimina campos que não podem ser manipulado no banco de dados
+     * safe(): Elimina campos que não podem ser manipulado no banco de dados
      * estes dados encontram-se em cada filha desta
      * @return array | null
      */
     protected function safe(): ?array 
     {
-        $safe = (array)$this->data;
+        $safe = (array) $this->data;
         foreach (static::$safe as $unset) {
             unset($safe[$unset]);
         }
@@ -187,13 +203,13 @@ abstract class Model
     }
     
     /**
-     * REQUIRED(): Verifica quais são os campos obrigatórios 
+     * required(): Verifica quais são os campos obrigatórios 
      * de cada, classe filha desta, 
      * @return bool
      */
     protected function required(): bool 
     {
-        $data = (array)$this->data;
+        $data = (array) $this->data;
         foreach (static::$required as $fields) {
             if (empty($data[$fields])) {
                 return false;

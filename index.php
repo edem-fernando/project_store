@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/source/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 
 $ceo = new \Source\People\Ceo("Edem Fernando Bastos", "28-11-2000");
@@ -33,11 +33,11 @@ $user_tutor = $tutor->search_by_name("Edem Fernando");
     <head>
         <meta charset="utf-8">
         <title>Core Company</title>
-        <link rel="stylesheet" type="text/css" href="style/fonticon.css">
+        <link rel="stylesheet" type="text/css" href="assets/style/fonticon.css">
         <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="style/boot.css">
-        <link rel="stylesheet" type="text/css" href="style/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/style/boot.css">
+        <link rel="stylesheet" type="text/css" href="assets/style/style.css">
     </head>
     <body>
         <header class="header_main">
@@ -382,7 +382,7 @@ $user_tutor = $tutor->search_by_name("Edem Fernando");
             </div>
         </div>
 
-        <script src="script/jquery.js"></script>
-        <script src="script/script.js"></script>
+        <script src="assets/script/jquery.js"></script>
+        <script src="assets/script/script.js"></script>
     </body>
 </html>

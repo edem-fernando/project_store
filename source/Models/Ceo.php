@@ -7,8 +7,8 @@ namespace Source\Models;
 use Source\Core\Model;
 
 /**
- * Ceo
- * @package Ceo
+ * Class Ceo
+ * @package Source\Models
  */
 class Ceo extends Model 
 {

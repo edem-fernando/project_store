@@ -6,30 +6,16 @@
     </head>
     <body>
         <?php
-        require __DIR__ . '/source/autoload.php';
-        $new_ceo = new \Source\Models\Ceo();
-        $user_ceo = $new_ceo->search_by_id(1);
+        require __DIR__ . '/vendor/autoload.php';
+        $user = new Source\Models\User();
         
-        $tutor = new \Source\Models\Tutor();
-        $user_tutor = $tutor->search_by_name("Edem Fernando");
-        
-        $company = new \Source\Models\Company();
-        $company_company = $company->search_by_social_reason("Core Company");
-        
-        $course = new \Source\Models\Course();
-        $course_php = $course->search_by_id(1);
-        
+        $user_name = $user->search_by_id("1");
+        $user_name->senha = "trojan-6060";
 
-        $new_course =  new \Source\Models\Course();
-        $new_course->bootstrap("Linux for Servidores", "Aprenda sobre o mundo do piguim", "394.99", 1);
-        
-        if ($new_course->save()) {
-            echo message()->success("Curso cadastrado com sucesso");
-        } else {
-            echo message()->success("Não foi possível cadastrar o curso");
+        if ($user_name->save()) {
+            message()->success("Usuário editado com sucesso");
+            var_dump($user_name);
         }
-        
-        var_dump($user_ceo, $user_tutor, $company_company, $course_php, $new_course);
         
         ?>
     </body>

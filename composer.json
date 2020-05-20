@@ -1,0 +1,33 @@
+{
+  "name": "CoreCompany/project_store",
+  "description": "Empresa provedora de cursos para desenvolvimento",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+    "name": "Edem Fernando Bastos",
+    "email": "edem.fbc@gmail.com",
+    "homepage": "https://www.github.com/edem-fernando",
+    "role": "Developer"
+    }
+  ],
+  "config": {
+    "vendor-dir": "vendor"
+  },
+  "autoload": {
+    "psr-4": {
+      "Source\\": "source/"
+    },
+    "files": [
+      "source/Support/config.php",
+      "source/Support/helpers.php"
+    ]
+  },
+  "require": {
+    "phpmailer/phpmailer": "^6.1",
+    "league/plates": "^3.3",
+    "coffeecode/uploader": "^1.0",
+    "coffeecode/cropper": "^1.0",
+    "coffeecode/optimizer": "^1.0",
+    "coffeecode/paginator": "^1.0"
+  }
+}

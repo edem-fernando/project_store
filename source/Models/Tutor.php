@@ -6,6 +6,10 @@ namespace Source\Models;
 
 use Source\Core\Model;
 
+/**
+ * Class Tutor
+ * @package Source\Models
+ */
 class Tutor extends Model
 {
     /**
