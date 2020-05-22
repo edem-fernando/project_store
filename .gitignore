@@ -1,8 +1,8 @@
-/nbproject/
+nbproject/
 vendor/
 .idea/
-imgs
-_img
+imgs/
+_img/
 composer.lock
 composer.phar
 assets/styles/fonts
