@@ -64,7 +64,9 @@ abstract class Model
         $this->data->$name = $value;
     }
 
-    /** @param $name */
+    /** 
+     * @param $name 
+     */
     public function __get($name) 
     {
         return ($this->data->$name ?? null);
@@ -79,7 +81,6 @@ abstract class Model
     }
 
     /**
-     * read():Prepara a QUERY ler registros do banco
      * @param string $select
      * @param array $params
      * @return PDOStatement | null
@@ -104,7 +105,6 @@ abstract class Model
     }
 
     /**
-     * insert():Prepara a QUERY para insere registros no banco
      * @param string $table
      * @param array $data
      * @return int | null
@@ -125,7 +125,6 @@ abstract class Model
     }
 
     /**
-     * updated():Prepara a QUERY para atualizar registros no banco
      * @param string $table
      * @param array $data
      * @param string $terms
@@ -154,7 +153,6 @@ abstract class Model
     }
 
     /**
-     * delete():Prepara a QUERY para excluir registros no banco
      * @param string $table
      * @param string $terms
      * @param string $params
@@ -175,7 +173,6 @@ abstract class Model
     }
 
     /**
-     * filter(): Remove caracteres especiais, para evitar códigos maliciosos
      * @param array $data
      * @return array | null
      */
@@ -189,7 +186,6 @@ abstract class Model
     }
 
     /**
-     * safe(): Elimina campos que não podem ser manipulado no banco de dados
      * estes dados encontram-se em cada filha desta
      * @return array | null
      */
@@ -202,9 +198,7 @@ abstract class Model
         return $safe;
     }
     
-    /**
-     * required(): Verifica quais são os campos obrigatórios 
-     * de cada, classe filha desta, 
+    /** 
      * @return bool
      */
     protected function required(): bool 

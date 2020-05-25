@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Source\App\Controllers;
 
 use Source\Core\Controller;
@@ -29,7 +28,7 @@ class UserController extends Controller
     public function home()
     {
         $get_page = filter_input(INPUT_GET, "page", FILTER_VALIDATE_INT);
-        $total = Conn::getInstance()->query("SELECT count(id) as total FROM usuarios")->fetch()->total;
+        $total = Conn::getInstance()->query("SELECT count(id_users) as total FROM users")->fetch()->total;
         $pager = new Paginator("?page=");
         $pager->page($total, 3, $get_page, 2);
 

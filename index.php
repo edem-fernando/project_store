@@ -67,11 +67,10 @@ $user_tutor = $tutor->search_by_name("Edem Fernando");
                     </header>
                     <p>Aprenda tudo sobre a linguagem de programação mais popular da Web!</p>
                     <?php 
-                    
-                    for ($i = 0; $i <= 4; $i++) {
-                        echo "<img src='_img/star.png' title='Avaliação dos nossos alunos' alt='Avaliação dos nossos alunos'>";
-                    } 
-                    
+                    for ($i = 0; $i <= 4; $i++): ?>
+                        <img src='_img/star.png' title='Avaliação dos nossos alunos' alt='Avaliação dos nossos alunos'>;
+                    <?php 
+                    endfor;
                     ?>
                 </article>
 
@@ -83,11 +82,10 @@ $user_tutor = $tutor->search_by_name("Edem Fernando");
                     </header>
                     <p>Conheça tudo sobre a linguagem de marcação mais importante da internet!</p>
                     <?php 
-                    
-                    for ($i = 0; $i <= 4; $i++) {
-                        echo "<img src='_img/star.png' title='Avaliação dos nossos alunos' alt='Avaliação dos nossos alunos'>";
-                    } 
-                    
+                    for ($i = 0; $i <= 4; $i++): ?>
+                        <img src='_img/star.png' title='Avaliação dos nossos alunos' alt='Avaliação dos nossos alunos'>;
+                    <?php 
+                    endfor;
                     ?>
                 </article>
 
@@ -99,11 +97,10 @@ $user_tutor = $tutor->search_by_name("Edem Fernando");
                     </header>
                     <p>Aprenda a manipular as interfaces de seus usuários com a biblioteca JavaScript mais famosa!</p>
                     <?php 
-                    
-                    for ($i = 0; $i <= 4; $i++) {
-                        echo "<img src='_img/star.png' title='Avaliação dos nossos alunos' alt='Avaliação dos nossos alunos'>";
-                    } 
-                    
+                    for ($i = 0; $i <= 4; $i++): ?>
+                        <img src='_img/star.png' title='Avaliação dos nossos alunos' alt='Avaliação dos nossos alunos'>;
+                    <?php 
+                    endfor;
                     ?>
                 </article>
 
@@ -115,11 +112,10 @@ $user_tutor = $tutor->search_by_name("Edem Fernando");
                     </header>
                     <p>Conheça tudo sobre a biblioteca CSS mais famosa do mundo, e crie interfaces fantásticas</p>
                     <?php 
-                    
-                    for ($i = 0; $i <= 4; $i++) {
-                        echo "<img src='_img/star.png' title='Avaliação dos nossos alunos' alt='Avaliação dos nossos alunos'>";
-                    } 
-                    
+                    for ($i = 0; $i <= 4; $i++): ?>
+                        <img src='_img/star.png' title='Avaliação dos nossos alunos' alt='Avaliação dos nossos alunos'>;
+                    <?php 
+                    endfor;
                     ?>
                 </article>
             </section>

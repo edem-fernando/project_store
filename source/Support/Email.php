@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Source\Support;
-
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as MailException;
@@ -46,54 +44,51 @@ class Email
     }
     
     /**
-     * bootstrap(): cria o objeto para mandar e-mail
      * @param string $subject
      * @param string $message
-     * @param string $to_email
-     * @param string $to_name
+     * @param string $toEmail
+     * @param string $toName
      * @return Email
      */
-    public function bootstrap(string $subject, string $message, string $to_email, string $to_name): Email
+    public function bootstrap(string $subject, string $message, string $toEmail, string $toName): Email
     {
         $this->data = new \stdClass();
         $this->data->subject = $subject;
         $this->data->message = $message;
-        $this->data->to_email = $to_email;
-        $this->data->to_name = $to_name;
+        $this->data->toEmail = $toEmail;
+        $this->data->toName = $toName;
         return $this;
     }
     
     /**
-     * attach(): adiciona anexos ao e-mail
-     * @param string $file_path
-     * @param string $file_name
+     * @param string $filePath
+     * @param string $fileName
      * @return Email
      */
-    public function attach(string $file_path, string $file_name): Email
+    public function attach(string $filePath, string $fileName): Email
     {
-        $this->data->attach[$file_path] = $file_name;
+        $this->data->attach[$filePath] = $fileName;
         return $this;
     }
     
     /**
-     * send(): verifica dados e envia o e-mail
-     * @param $from_email = CONF_MAIL_SENDER["address"]
-     * @param $from_name = CONF_MAIL_SENDER["name"]
+     * @param $fromEmail = CONF_MAIL_SENDER["address"]
+     * @param $fromName = CONF_MAIL_SENDER["name"]
      * @return bool
      */
-    public function send($from_email = CONF_MAIL_SENDER["address"], $from_name = CONF_MAIL_SENDER["name"]): bool
+    public function send($fromEmail = CONF_MAIL_SENDER["address"], $fromName = CONF_MAIL_SENDER["name"]): bool
     {
         if (empty($this->data)) {
             $this->message->warning("Por favor verifique os dados!");
             return false;
         }
 
-        if (!is_email($this->data->to_email)) {
+        if (!is_email($this->data->toEmail)) {
             $this->message->error("E-mail de destinatário inválido!");
             return false;
         }
 
-        if (!is_email($from_email)) {
+        if (!is_email($fromEmail)) {
             $this->message->error("E-mail de remetente inválido!");
             return false;
         }
@@ -101,7 +96,7 @@ class Email
         try {
             $this->mail->Subject = $this->data->subject;
             $this->mail->msgHTML($this->data->message);
-            $this->mail->addAddress($this->data->to_email, $this->to_name);
+            $this->mail->addAddress($this->data->toEmail, $this->toName);
             $this->mail->setFrom($from_email, $from_name);
 
             if (!empty($this->data->attach)) {

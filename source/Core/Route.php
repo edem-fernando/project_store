@@ -4,7 +4,7 @@ namespace Source\Core;
 
 
 /**
- * Class Route: classe que monitora url
+ * Class Route
  * @package Source\Core
  */
 class Route 

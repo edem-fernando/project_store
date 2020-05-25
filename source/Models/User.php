@@ -12,36 +12,31 @@ use \Source\Core\Model;
 class User extends Model
 {
     /** @var array $safe no update or create */
-    protected static $safe = ['id_usuarios', 'criado_em', 'editado_em'];
+    protected static $safe = ['idUser', 'criado_em', 'editado_em'];
 
     /** @var array $required table fields */
-    protected static $required = ["nome", "cpf", "email", "senha"];
+    protected static $required = ["name", "document", "email", "password"];
 
     /** @var string $table database table */
-    private static $table = 'usuarios';
+    private static $table = 'users';
     
     /**
-     * bootstrap(): monta dados, em seu parâmetro, que podem ser utilizados
-     * em outros métodos. Estes dados por exemplo serão inseridos na base de dados
-     * se após o uso do método seja realizado um save()
      * @param string $name
-     * @param string $cpf
+     * @param string $document
      * @param string $email
-     * @param string $senha
+     * @param string $password
      * @return User | null
      */
-    public function bootstrap(string $name, string $cpf, string $email, string $senha): ?User
+    public function bootstrap(string $name, string $document, string $email, string $password): ?User
     {
         $this->nome = $name;
-        $this->cpf = $cpf;
+        $this->document = $document;
         $this->email = $email;
-        $this->senha = $senha;
+        $this->password = $password;
         return $this;
     }
     
     /**
-     * search(): Faz um select no banco de dados através do dos termos e parâmetros
-     * é genérico
      * @param string $columns
      * @return User | null
      */
@@ -55,51 +50,46 @@ class User extends Model
     }
     
     /**
-     * search_by_id(): Faz um select no banco de dados através do id
      * @param int $id
      * @param string $columns
      * @return array | null
      */
-    public function search_by_id(int $id, string $columns = "*"): ?User
+    public function searchById(int $id, string $columns = "*"): ?User
     {
-        return $this->search("id_usuarios = :id", "id={$id}", $columns);
+        return $this->search("idUser = :idUser", "idUser={$id}", $columns);
     }
     
     /**
-     * search_by_name(): Faz um select no banco de dados através do nome
      * @param string $name
      * @param string $columns
      * @return array | null
      */
-    public function search_by_name(string $name, string $columns = "*"): ?User
+    public function searchByName(string $name, string $columns = "*"): ?User
     {
-        return $this->search("nome = :nome", "nome={$name}", $columns);
+        return $this->search("name = :name", "name={$name}", $columns);
     }
     
     /**
-     * search_by_email(): Faz um select no banco de dados através do email
      * @param string $email
      * @param string $columns
      * @return array | null
      */
-    public function search_by_email(string $email, string $columns = "*"): ?User
+    public function searchByEmail(string $email, string $columns = "*"): ?User
     {
         return $this->search("email = :email", "email={$email}", $columns);
     }
     
     /**
-     * search_by_cpf(): Faz um select no banco de dados através do CPF
-     * @param string $cpf
+     * @param string $document
      * @param string $columns
      * @return array | null
      */
-    public function search_by_cpf(string $cpf, string $columns): ?User
+    public function searchByDocument(string $document, string $columns): ?User
     {
-        return $this->search("cpf = :cpf", "cpf={$cpf}", $columns);
+        return $this->search("document = :document", "document={$document}", $columns);
     }
 
     /**
-     * all(): Faz um select no banco de dados trazendo vários registros
      * @param int $limit
      * @param int $offset
      * @param string $columns
@@ -115,9 +105,6 @@ class User extends Model
     }
     
     /**
-     * save(): Verifica se o id e o e-mail já estão cadastrados,
-     * caso estejam realiza um update, e persiste os dados no banco
-     * caso contrário realiza um insert, e persiste os dados no banco
      * @return User | null
      */
     public function save(): ?User
@@ -132,34 +119,34 @@ class User extends Model
             return null;
         }
 
-        if (!is_passwd($this->senha)) {
+        if (!is_passwd($this->password)) {
             $min = CONF_PASSWD_MIN_LEN;
             $max = CONF_PASSWD_MAX_LEN;
             $this->message()->warning("A senha deve ter entre {$min} e {$max} caracteres!");
             return null;
         } else {
-            $this->senha = passwd($this->senha);
+            $this->password = passwd($this->password);
         }
 
         // User Update
-        if (!empty($this->id_usuarios)) {
-            $user_id = $this->id_usuarios;
-            if ($this->search("email = :e AND id_usuarios != :id", "e={$this->email}&id={$user_id}")) {
+        if (!empty($this->idUser)) {
+            $idUser = $this->idUser;
+            if ($this->search("email = :email AND idUser != :idUser", "email={$this->email}&idUser={$idUser}")) {
                 $this->message()->error("Email já cadastrado!");
                 return null;
             }
 
-            if ($this->search("cpf = :cpf AND id_usuarios != :id", "cpf={$this->cpf}&id={$user_id}")) {
+            if ($this->search("document = :document AND idUser != :idUser", "document={$this->document}&id={$idUser}")) {
                 $this->message()->error("CPF já cadastrado!");
                 return null;
             }
 
-            if (!is_cpf($this->cpf)) {
+            if (!is_cpf($this->document)) {
                 $this->message()->error("CPF inválido!");
                 return null;
             }
 
-            $this->updated(self::$table, $this->safe(), "id_usuarios = :id", "id={$user_id}");
+            $this->updated(self::$table, $this->safe(), "idUser = :idUser", "idUser={$idUser}");
             if ($this->fail()) {
                 $this->message()->error("Não foi possível editar o usuário, verifique os dados!");
                 return null;
@@ -167,41 +154,40 @@ class User extends Model
         }
 
         // User Insert
-        if (empty($this->id_usuarios)) {
-            if ($this->search_by_email(self::$table, $this->email)) {
+        if (empty($this->idUser)) {
+            if ($this->searchByEmail(self::$table, $this->email)) {
                 $this->message->error("E-mail já cadastrado!");
                 return null;
             }
 
-            if (!is_cpf($this->cpf)) {
+            if (!is_cpf($this->document)) {
                 $this->message->error("CPF inválido!");
                 return null;
             }
 
-            if ($this->search_by_cpf(self::$table, $this->cpf)) {
+            if ($this->searchByDocument(self::$table, $this->document)) {
                 $this->message->error("CPF já cadastrado!");
                 return null;
             }
 
-            $user_id = $this->insert(self::$table, $this->safe());
+            $idUser = $this->insert(self::$table, $this->safe());
             if ($this->fail()) {
                 $this->message->error("Não foi possível cadastrar o usuário, por favor verifique os dados!");
                 return null;
             }
         }
-        $this->data = ($this->search_by_id($user_id))->data();
+        $this->data = ($this->searchById($idUser))->data();
         return $this;
     }
     
     /**
-     * destroy(): Verifica se o id existe no banco de dados, e depois,
      * o apaga do banco de dados
      * @return User | null
      */
     public function destroy(): ?User
     {
-        if (!empty($this->id_usuarios)) {
-            $this->delete(self::$table, "id_usuarios = :id", "id={$this->id_usuarios}");
+        if (!empty($this->idUser)) {
+            $this->delete(self::$table, "idUser = :idUser", "idUser={$this->idUser}");
         }
 
         if ($this->fail()) {

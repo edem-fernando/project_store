@@ -37,7 +37,6 @@ class Upload
             $this->message()->error("Você não selecionou uma imagem válida!");
             return null;
         }
-
         return $upload->upload($image, $name, $width, CONF_IMAGES_QUALITY);
     }
     
@@ -57,7 +56,6 @@ class Upload
             $this->message()->error("Você não selecionou um arquivo válido!");
             return null;
         }
-
         return $upload->upload($file, $name);
     }
     
@@ -77,7 +75,6 @@ class Upload
             $this->message()->error("Você não selecionou uma mídea válida!");
             return null;
         }
-
         return $upload->upload($media, $name);
     }
     
@@ -86,10 +83,10 @@ class Upload
      * @param strin $file_path
      * @return void
      */
-    public function remove(string $file_path): void
+    public function remove(string $filePath): void
     {
-        if (file_exists($file_path) && is_file($file_path)) {
-            unlink($file_path);
+        if (file_exists($filePath) && is_file($filePath)) {
+            unlink($filePath);
         }
     }
     

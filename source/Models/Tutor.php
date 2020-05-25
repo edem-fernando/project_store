@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Source\Models;
-
 
 use Source\Core\Model;
 
@@ -16,13 +14,13 @@ class Tutor extends Model
      * $safe: dados que não podem ser manipulados 
      * @var static $safe
      */
-    protected static $safe = ["id_tutor", "criado_em", "editado_em"];
+    protected static $safe = ["idTutor", "created_at", "updated_at"];
     
     /**
      * $required: dados obrigatórios para a tabela no banco 
      * @var static $required
      */
-    protected static $required = ["nome", "cpf", "email"];
+    protected static $required = ["name", "document", "email"];
     
     /**
      * $table: nome da tabela no banco
@@ -31,26 +29,24 @@ class Tutor extends Model
     private static $table = "tutor";
 
     /**
-     * BOOTSTRAP():
+     * @param string $idAddress
      * @param string $name
-     * @param string $cpf
+     * @param string $document
      * @param string $email
-     * @param int $id_endereco
+     * @param string $description
      * @return Ceo | null
      */
-    public function bootstrap(int $id_endereco, string $name, string $cpf, string $email, string $description = null): ?Tutor 
+    public function bootstrap(string $idAddress, string $name, string $document, string $email, string $description = null): ?Tutor 
     {
-        $this->id_endereco = $id_endereco;
+        $this->idAddress = $idAddress;
         $this->name = $name;
-        $this->cpf = $cpf;
+        $this->document = $document;
         $this->email = $email;
         $this->description = $description;
         return $this;
     }
     
     /**
-     * SEARCH(): Faz um select no banco de dados através do dos termos e parâmetros
-     * é genérico
      * @param string $terms
      * @param string $params
      * @param string $columns
@@ -66,51 +62,46 @@ class Tutor extends Model
     }
     
     /**
-     * SEARCH_BY_ID(): Faz um select no banco de dados através do id
      * @param int $id
      * @param string $columns
      * @return Tutor | null
      */
-    public function search_by_id(int $id, string $columns = "*"): ?Tutor
+    public function searchById(int $id, string $columns = "*"): ?Tutor
     {
-        return $this->search("id_tutor = :i", "i={$id}", $columns);
+        return $this->search("idTutor = :idTutor", "idTutor={$id}", $columns);
     }
 
     /**
-     * SEARCH_BY_NAME(): Faz um select no banco de dados através do nome
      * @param string $name
      * @param string $columns
      * @return Tutor | null
      */
-    public function search_by_name(string $name, string $columns = "*"): ?Tutor
+    public function searchByName(string $name, string $columns = "*"): ?Tutor
     {
-        return $this->search("nome = :n", "n={$name}", $columns);
+        return $this->search("name = :name", "name={$name}", $columns);
     }
     
     /**
-     * SEARCH_BY_CPF(): Faz um select no banco de dados através do CPF
-     * @param string $cpf
+     * @param string $document
      * @param string $columns
      * @return Tutor | null
      */
-    public function search_by_cpf(string $cpf, string $columns = "*"): ?Tutor
+    public function searchByDocument(string $document, string $columns = "*"): ?Tutor
     {
-        return $this->search("cpf = :c", "c={$cpf}", $columns);
+        return $this->search("document = :document", "document={$document}", $columns);
     }
     
     /**
-     * SEARCH_BY_EMAIL(): Faz um select no banco de dados através do email
      * @param string $email
      * @param string $columns
      * @return Tutor | null
      */
-    public function search_by_email(string $email, string $columns = "*"): ?Tutor
+    public function searchByEmail(string $email, string $columns = "*"): ?Tutor
     {
-        return $this->search("email = :e", "e={$email}", $columns);
+        return $this->search("email = :email", "email={$email}", $columns);
     }
     
     /**
-     * ALL(): Faz um select no banco de dados trazendo vários registros
      * @param int $limit
      * @param int $offset
      * @param string $columns
@@ -136,7 +127,7 @@ class Tutor extends Model
             return null;
         }
         
-        if (!is_cpf($this->cpf)) {
+        if (!is_cpf($this->document)) {
             $this->message()->error("CPF inválido!");
             return null;
         }
@@ -147,24 +138,24 @@ class Tutor extends Model
         }
         
         // TUTOR UPDATE
-        if (!empty($this->id_tutor)) {
-            $tutor_id = $this->id_tutor;
-            if ($this->search("nome = :n AND id_tutor != :i", "n={$this->nome}&i={$tutor_id}")) {
+        if (!empty($this->idTutor)) {
+            $idTutor = $this->idTutor;
+            if ($this->search("name = :name AND idTutor != :idTutor", "name={$this->name}&idTutor={$idTutor}")) {
                 $this->message()->warning("O tutor informado já está cadastrado!");
                 return null;
             }
             
-            if ($this->search("email = :e AND id_tutor != :i", "e={$this->email}&i={$tutor_id}")) {
+            if ($this->search("email = :email AND idTutor != :idTutor", "email={$this->email}&i={$idTutor}")) {
                 $this->message()->warning("O e-mail informado já está cadastrado!");
                 return null;
             }
             
-            if ($this->search("cpf = :c AND id_tutor != :i", "c={$this->cpf}&i={$tutor_id}")) {
+            if ($this->search("document = :document AND idTutor != :idTutor", "document={$this->document}&idTutor={$idTutor}")) {
                 $this->message()->warning("O CPF informado já está cadastrado!");
                 return null;
             }
             
-            $this->updated(self::$table, $this->safe(), "id_tutor = :id", "id={$tutor_id}");
+            $this->updated(self::$table, $this->safe(), "idTutor = :idTutor", "idTutor={$idTutor}");
             if ($this->fail()) {
                 $this->message()->error("Error ao atualizar, por favor verifique os dados!");
                 return null;
@@ -172,41 +163,39 @@ class Tutor extends Model
         }
         
         // TUTOR INSERT
-        if (empty($this->id_tutor)) {
-            if ($this->search_by_email($this->email)) {
+        if (empty($this->idTutor)) {
+            if ($this->searchByEmail($this->email)) {
                 $this->message()->warning("O e-mail informado já está cadastrado!");
                 return null;
             }
             
-            if ($this->search_by_name($this->name)) {
+            if ($this->searchByName($this->name)) {
                 $this->message()->warning("O tutor informado já está cadastrado!");
                 return null;
             }
             
-            if ($this->search_by_cpf($this->cpf)) {
+            if ($this->searchByDocument($this->document)) {
                 $this->message()->warning("O CPF informado já está cadastrado!");
                 return null;
             }
             
-            $tutor_id = $this->insert(self::$table, $this->safe());
+            $idTutor = $this->insert(self::$table, $this->safe());
             if ($this->fail()) {
                 $this->message()->error("Error ao cadastrar, por favor verifique os dados!");
                 return null;
             }
         }
-        $this->data = ($this->search_by_id($tutor_id))->data();
+        $this->data = ($this->searchById($idTutor))->data();
         return $this;
     }
 
     /**
-     * DESTROY(): Verifica se o id existe no banco de dados, e depois,
-     * o apaga do banco de dados
      * @return Tutor | null
      */
     public function destroy(): ?Tutor
     {
-        if (!empty($this->id_tutor)) {
-            $this->delete(self::$table, "id_tutor = :i", "i={$this->id_tutor}");
+        if (!empty($this->idTutor)) {
+            $this->delete(self::$table, "idTutor = :idTutor", "idTutor={$this->idTutor}");
         }
         
         if ($this->fail()) {

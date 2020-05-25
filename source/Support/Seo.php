@@ -48,7 +48,6 @@ class Seo
     }
     
     /**
-     * render(): monta e retorna a string de HTML
      * @param string $title
      * @param string $description
      * @param string $url

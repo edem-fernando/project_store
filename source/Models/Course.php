@@ -15,39 +15,37 @@ class Course extends Model
      * $safe: dados que não podem ser manipulados 
      * @var static $safe
      */
-    protected static $safe = ["id_cursos", "criado_em", "editado_em"];
+    protected static $safe = ["idCourses", "created_at", "updated_at"];
 
     /**
      * $required: dados obrigatórios para a tabela no banco 
      * @var static $required
      */
-    protected static $required = ["nome", "descricao", "preco", "id_tutor"];
+        protected static $required = ["name", "description", "price", "idTutor"];
 
     /**
      * $table: nome da tabela no banco
      * @var static $table
      */
-    private static $table = "cursos";
+    private static $table = "courses";
 
     /**
-     * BOOTSTRAP():monta o objeto para persistir
      * @param string $name
      * @param string $description
      * @param float $price
-     * @param int $id_tutor
+     * @param int $idTutor
      * @return Company | null
      */
-    public function bootstrap(string $name, string $description, float $price, int $id_tutor): ?Course 
+    public function bootstrap(string $name, string $description, float $price, int $idTutor): ?Course 
     {
-        $this->nome = $name;
-        $this->descricao = $description;
-        $this->preco = $price;
-        $this->id_tutor = $id_tutor;
+        $this->name = $name;
+        $this->description = $description;
+        $this->price = $price;
+        $this->idTutor = $idTutor;
         return $this;
     }
 
     /**
-     * SEARCH(): busca genêrica na base de dados
      * @param string $terms
      * @param string $params
      * @param string $columns
@@ -63,29 +61,26 @@ class Course extends Model
     }
 
     /**
-     * SEARCH_BY_ID(): faz uma busca através do id
-     * @param int $id_cursos
+     * @param int $idCourses
      * @param string $columns
      * @return Course | null
      */
-    public function search_by_id(int $id_cursos, string $columns = "*"): ?Course 
+    public function searchById(int $idCourses, string $columns = "*"): ?Course 
     {
-        return $this->search("id_cursos = :id_cursos", "id_cursos={$id_cursos}", $columns);
+        return $this->search("idCourses = :idCourses", "idCourses={$idCourses}", $columns);
     }
 
     /**
-     * SEARCH_BY_NAME(): faz uma busca através do nome
      * @param string $name
      * @param string $columns
      * @return Course | null
      */
-    public function search_by_name(string $name, string $columns = "*"): ?Course 
+    public function searchByName(string $name, string $columns = "*"): ?Course 
     {
-        return $this->search("nome = :name", "name={$name}", $columns);
+        return $this->search("name = :name", "name={$name}", $columns);
     }
 
     /**
-     * ALL(): Faz um select no banco de dados trazendo vários registros
      * @param int $limit
      * @param int $offset
      * @param string $columns
@@ -103,7 +98,6 @@ class Course extends Model
     }
 
     /**
-     * SAVE(): Persiste dados no banco
      * @return Course | null
      */
     public function save(): ?Course 
@@ -114,14 +108,14 @@ class Course extends Model
         }
 
         // COUSE UPDATE
-        if (!empty($this->id_cursos)) {
-            $course_id = $this->id_cursos;
-            if ($this->search("nome = :nome AND id_cursos != id_cursos", "nome={$this->nome}&id_cursos={$course_id}")) {
+        if (!empty($this->idCourses)) {
+            $idCourses = $this->idCourses;
+            if ($this->search("name = :name AND idCourses != :idCourses", "name={$this->name}&idCourses={$idCourses}")) {
                 $this->message()->warning("O curso informado já está cadastrado!");
                 return null;
             }
 
-            $this->updated(self::$table, $this->safe(), "id_cursos = :id", "id={$course_id}");
+            $this->updated(self::$table, $this->safe(), "idCourses = :idCourses", "idCourses={$idCourses}");
             if ($this->fail()) {
                 $this->message()->error("Não foi possível atualizar o curso!");
                 return null;
@@ -129,27 +123,25 @@ class Course extends Model
         }
 
         // COURSE INSERT
-        if (empty($this->id_cursos)) {
-            if ($this->search_by_name($this->nome)) {
+        if (empty($this->idCourses)) {
+            if ($this->searchByName($this->name)) {
                 $this->message()->warning("Curso já cadastrado!");
                 return null;
             }
 
-            $course_id = $this->insert(self::$table, $this->safe());
-            $this->data = ($this->search_by_id($course_id))->data();
+            $idCourses = $this->insert(self::$table, $this->safe());
+            $this->data = ($this->searchById($idCourses))->data();
             return $this;
         }
     }
 
     /**
-     * DESTROY(): Verifica se o id existe no banco de dados, e depois,
-     * o apaga do banco de dados
      * @return Ceo | null
      */
     public function destroy(): ?Course 
     {
-        if (!empty($this->id_cursos)) {
-            $this->delete(self::$table, "id_cursos = :id", "id={$this->id_cursos}");
+        if (!empty($this->idCourses)) {
+            $this->delete(self::$table, "idCourses = :idCourses", "idCourses={$this->idCourses}");
         }
 
         if ($this->fail()) {

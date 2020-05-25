@@ -7,7 +7,7 @@ namespace Source\Core;
 use Source\Support\Message;
 
 /**
- * Session
+ * Classs Session
  * @package Session
  */
 class Session 
@@ -42,7 +42,6 @@ class Session
     }
     
     /**
-     * all(): converte uma sessão para objeto
      * @return object | null
      */
     public function all(): ?object
@@ -51,7 +50,6 @@ class Session
     }
     
     /**
-     * set(): cria uma sessão
      * @param string $key
      * @param string $value
      * @return Session
@@ -63,7 +61,6 @@ class Session
     }
     
     /**
-     * unset(): Remove uma sessão
      * @param string $key
      * @return Session
      */
@@ -92,7 +89,6 @@ class Session
     }
     
     /**
-     * destroy(): destrói uma sessão
      * @return Session
      */
     public function destroy(): Session
@@ -102,7 +98,6 @@ class Session
     }
     
     /**
-     * flash(): verifica se há uma sessão flash
      * depois a remove
      * @return Message | null
      */
@@ -117,7 +112,6 @@ class Session
     }
     
     /**
-     * csrf(): cria uma sessão contra ataques csrf
      * @return void
      */
     public function csrf(): void

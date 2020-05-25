@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Source\Models;
-
 
 use Source\Core\Model;
 
@@ -16,42 +14,39 @@ class Company extends Model
      * $safe: dados que não podem ser manipulados 
      * @var static $safe
      */
-    protected static $safe = ["id_empresa", "criado_em", "editado_em"];
+    protected static $safe = ["idCompany", "created_at", "updated_at"];
     
     /**
      * $required: dados obrigatórios para a tabela no banco 
      * @var static $required
      */
-    protected static $required = ["id_ceo", "id_endereco", "nome_fantasia", "razao_social", "cnpj"];
+    protected static $required = ["idCeo", "idAddress", "fantasyName", "socialReason", "cnpj"];
     
     /**
      * $table: nome da tabela no banco
      * @var static $table
      */
-    private static $table = "empresa";
+    private static $table = "company";
     
     /**
-     * BOOTSTRAP(): monta o objeto para persistir
-     * @param int $id_ceo
-     * @param int $id_endereco
-     * @param string $fantasy_name
-     * @param string $social_reason
+     * @param int $idCeo
+     * @param int $idAddress
+     * @param string $fantasyName
+     * @param string $socialReason
      * @param string $cnpj
      * @return Company | null
      */
-    public function bootstrap(int $id_ceo, int $id_endereco, string $fantasy_name, string $social_reason, string $cnpj): ?Company 
+    public function bootstrap(int $idCeo, int $idAddress, string $fantasyName, string $socialReason, string $cnpj): ?Company 
     {
-        $this->id_ceo = $id_ceo;
-        $this->id_endereco = $id_endereco;
-        $this->nome_fantasia = $fantasy_name;
-        $this->razao_social = $social_reason;
+        $this->idCeo = $idCeo;
+        $this->idAddress = $idAddress;
+        $this->fantasyName = $fantasyName;
+        $this->socialReason = $socialReason;
         $this->cnpj = $cnpj;
         return $this;
     }
     
     /**
-     * SEARCH(): Faz um select no banco de dados através do dos termos e parâmetros
-     * é genérico
      * @param string $terms
      * @param string $params
      * @param string $columns
@@ -67,51 +62,46 @@ class Company extends Model
     }
     
     /**
-     * SEARCH_BY_ID(): Faz um select no banco de dados através do id
-     * @param int $id_company
+     * @param int $idCompany
      * @param string $columns
      * @return Company | null
      */
-    public function search_by_id(int $id_company, string $columns = "*"): ?Company
+    public function searchById(int $idCompany, string $columns = "*"): ?Company
     {
-        return $this->search("id_empresa = :id", "id={$id_company}", $columns);
+        return $this->search("idCompany = :idCompany", "idCompany={$idCompany}", $columns);
     }
 
     /**
-     * SEARCH_BY_FANTASY_NAME(): Faz um select no banco de dados através do nome fantasia
-     * @param string $fantasy_name
+     * @param string $fantasyName
      * @param string $columns
      * @return Company | null
      */
-    public function search_by_fantasy_name(string $fantasy_name, string $columns = "*"): ?Company
+    public function searchByFantasyName(string $fantasyName, string $columns = "*"): ?Company
     {
-        return $this->search("nome_fantasia = :nF", "nF={$fantasy_name}", $columns);
+        return $this->search("fantasyName = :nF", "nF={$fantasyName}", $columns);
     }
 
     /**
-     * SEARCH_BY_SOCIAL_REASON(): Faz um select no banco de dados através da razão social
-     * @param string $social_reason
+     * @param string $socialReason
      * @param string $columns
      * @return Company | null
      */
-    public function search_by_social_reason(string $social_reason, string $columns = "*") 
+    public function searchBySocialReason(string $socialReason, string $columns = "*") 
     {
-        return $this->search("razao_social = :sR", "sR={$social_reason}", $columns);
+        return $this->search("socialReason = :sR", "sR={$socialReason}", $columns);
     }
     
     /**
-     * SEARCH_BY_CNPJ(): Faz um select no banco de dados através do CNPJ
      * @param string $cnpj
      * @param string $columns
      * @return Company | null
      */
-    public function search_by_cnpj(string $cnpj, string $columns = "*"): ?Company
+    public function searchByCnpj(string $cnpj, string $columns = "*"): ?Company
     {
         return $this->search("cnpj = :cnpj", "cnpj={$cnpj}", $columns);
     }
     
     /**
-     * ALL(): Faz um select no banco de dados trazendo vários registros
      * @param int $limit
      * @param int $offset
      * @param string $columns
@@ -127,7 +117,6 @@ class Company extends Model
     }
 
     /**
-     * SAVE(): valida e persiste os dados no banco
      * @return Company | null
      */
     public function save(): ?Company
@@ -143,19 +132,19 @@ class Company extends Model
         }
 
         // COMPANY UPDATE
-        if (!empty($this->id_empresa)) {
-            $company_id = $this->id_empresa;
-            if ($this->search("razao_social = :rS AND id_empresa != :id", "rS={$this->razao_social}&id={$company_id}")) {
+        if (!empty($this->idCompany)) {
+            $idCompany = $this->idCompany;
+            if ($this->search("socialReason = :rS AND idCompany != :idCompany", "rS={$this->socialReason}&id={$idCompany}")) {
                 $this->message()->warning("A Razão Social já está cadastrada!");
                 return null;
             }
 
-            if ($this->search("nome_fantasia = :nF AND id_empresa != :id", "nome_fantasia={$this->nome_fantasia}&id={$company_id}")) {
+            if ($this->search("fantasyName = :nF AND idCompany != :idCompany", "fantasyName={$this->fantasyName}&id={$idCompany}")) {
                 $this->message()->warning("O Nome Fantasia já está cadastrado!");
                 return null;
             }
 
-            $this->updated(self::$table, $this->safe(), "id_empresa = :id", "id={$company_id}");
+            $this->updated(self::$table, $this->safe(), "idCompany = :idCompany", "idCompany={$idCompany}");
             if ($this->fail()) {
                 $this->message()->error("Error ao atualizar, por favor verifique os dados!");
                 return null;
@@ -163,42 +152,40 @@ class Company extends Model
         }
 
         // COMPANY INSERT
-        if (empty($this->id_empresa)) {
-            if ($this->search_by_cnpj($this->cnpj)) {
+        if (empty($this->idCompany)) {
+            if ($this->searchByCnpj($this->cnpj)) {
                 $this->message()->warning("O CNPJ já está cadastrado!");
                 return null;
             }
 
-            if ($this->search_by_fantasy_name($this->fantasy_name)) {
+            if ($this->searchByFantasyName($this->fantasyName)) {
                 $this->message()->warning("O Nome Fantasia já está cadastrado!");
                 return null;
             }
 
-            if ($this->search_by_social_reason($this->social_reason)) {
+            if ($this->searchBySocialReason($this->socialReason)) {
                 $this->message()->warning("A Razão Social já está cadastrada!");
                 return null;
             }
 
-            $company_id = $this->insert(self::$table, $this->safe());
+            $idCompany = $this->insert(self::$table, $this->safe());
             if ($this->fail()) {
                 $this->message()->error("Não foi possível cadastrar a empresa!");
                 return null;
             }
 
-            $this->data = ($this->search_by_id($company_id))->data();
+            $this->data = ($this->searchByIdd($idCompany))->data();
             return $this;
         }
     }
 
     /**
-     * DESTROY(): Verifica se o id existe no banco de dados, e depois,
-     * o apaga do banco de dados
      * @return Company | null
      */
     public function destroy(): ?Company 
     {
-        if (!empty($this->id_empresa)) {
-            $this->delete(self::$table, "id_empresa = :id", "id={$this->id_empresa}");
+        if (!empty($this->idCompany)) {
+            $this->delete(self::$table, "idCompany = :idCompany", "idCompany={$this->idCompany}");
         }
 
         if ($this->fail()) {

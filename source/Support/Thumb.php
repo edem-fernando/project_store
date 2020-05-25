@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Source\Support;
 
 use CoffeeCode\Cropper\Cropper;
