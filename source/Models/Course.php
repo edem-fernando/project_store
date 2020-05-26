@@ -21,13 +21,13 @@ class Course extends Model
      * $required: dados obrigatórios para a tabela no banco 
      * @var static $required
      */
-        protected static $required = ["name", "description", "price", "idTutor"];
+    protected static $required = ["name", "description", "price", "idTutor"];
 
     /**
      * $table: nome da tabela no banco
      * @var static $table
      */
-    private static $table = "courses";
+    protected static $table = "courses";
 
     /**
      * @param string $name
@@ -36,12 +36,13 @@ class Course extends Model
      * @param int $idTutor
      * @return Company | null
      */
-    public function bootstrap(string $name, string $description, float $price, int $idTutor): ?Course 
+    public function bootstrap(string $name, string $description, float $price, int $idTutor, string $imagePath = null): ?Course 
     {
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
         $this->idTutor = $idTutor;
+        $this->imagePath = $imagePath;
         return $this;
     }
 

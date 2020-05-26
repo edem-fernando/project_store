@@ -33,16 +33,16 @@ class Tutor extends Model
      * @param string $name
      * @param string $document
      * @param string $email
-     * @param string $description
+     * @param string $descriptionTutor
      * @return Ceo | null
      */
-    public function bootstrap(string $idAddress, string $name, string $document, string $email, string $description = null): ?Tutor 
+    public function bootstrap(string $idAddress, string $name, string $document, string $email, string $descriptionTutor = null): ?Tutor 
     {
         $this->idAddress = $idAddress;
         $this->name = $name;
         $this->document = $document;
         $this->email = $email;
-        $this->description = $description;
+        $this->descriptionTutor = $descriptionTutor;
         return $this;
     }
     
