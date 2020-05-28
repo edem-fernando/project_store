@@ -8,7 +8,7 @@
         <form>
             <input placeholder="Seu nome" type='text' id='clientName' name='clientName'>
             <input placeholder='Seu e-mail' type='email' id='clientMail' name='clientMail'>
-            <input type='button' value='Ok' class='btn'>
+            <input type='button' value='Ok' class='btn transition'>
         </form>
     </div>
 </article>

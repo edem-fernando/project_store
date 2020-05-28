@@ -21,7 +21,7 @@
 
             <div class='tutor_social_network'>
                 <h6 class="icon-facebook2">
-                    <a 
+                    <a  class="transition"
                         href="<?= $manufacturer->getCeo()->getFacebookAccount(); ?>" target="_blank"
                         title="Facebook de <?= $manufacturer->getCeo()->getName(); ?>"
                         alt="Facebook de <?= $manufacturer->getCeo()->getName(); ?>"
@@ -33,13 +33,13 @@
 
             <div class='tutor_social_network'>
                 <h6 class="icon-github">
-                    <a href="#" target="_blank" title="GitHub">GitHub</a>
+                    <a href="#" class="transition" target="_blank" title="GitHub">GitHub</a>
                 </h6>
             </div>
 
             <div class='tutor_social_network'>
                 <h6 class="icon-instagram">
-                    <a alt="Instagram de <?= $manufacturer->getCeo()->getName(); ?>" 
+                    <a class="transition" alt="Instagram de <?= $manufacturer->getCeo()->getName(); ?>" 
                        title="Instagram de <?= $manufacturer->getCeo()->getName(); ?>" 
                        href="<?= $manufacturer->getCeo()->getInstagramAccount(); ?>" target="_blank"
                        >Instagram</a>

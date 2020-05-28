@@ -1,6 +1,6 @@
+/** HEADER */
 .header_main {
     width: 100%;
-    /*background: #563D7C; */
     background: var(--blue);
     margin-bottom: 20px;
 }
@@ -11,12 +11,8 @@
     display: flex;
 }
 
-.header_main_content_menu { flex-basis: calc(100% - 330px); }
-
-.header_main .header_main_content .logo {
-    flex-basis: 330px;
-    padding: 20px;
-    width: 290px;
+.header_main_content_menu { 
+    flex-basis: calc(100% - 330px); 
 }
 
 .header_main .header_main_content .header_main_content_menu {
@@ -48,6 +44,72 @@
     color: #000;
 }
 
+/** MENU MOBILE */
+.header_main .header_main_content .header_main_content_menu_mobile{
+    flex-basis: calc(100% - 330px);
+    justify-content: flex-start;
+    display: none;
+}
+
+.header_main_content_menu_mobile ul{
+    display: flex;
+    align-content: center;
+    margin-right: 20px;
+}
+
+.header_main_content_menu_mobile ul li{
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+}
+
+.main_header_content_menu_mobile_obj{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    color: #fff;
+    font-size: 2em;
+    border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+}
+
+.main_header_content_menu_mobile_obj:hover, .main_header_content_menu_mobile_obj_active{
+    cursor: pointer;
+    background-color: #000;
+}
+
+.main_header_content_menu_mobile_sub{
+    min-width: 200px;
+    background: #000;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 100%;
+    border-radius: 0px 4px 4px 4px;
+    -moz-border-radius: 0px 4px 4px 4px;
+    -webkit-border-radius: 0px 4px 4px 4px;
+}
+
+.main_header_content_menu_mobile_sub li {
+    flex-basis: 100%;
+}
+
+.main_header_content_menu_mobile_sub li a{
+    width: 100%;
+    text-align: center;
+    color: #FFF;
+    padding: 10px 0;
+}
+
+.main_header_content_menu_mobile_sub li a:hover{
+    background: #fff;
+    color: #000;
+}
+
+
 /*======= LISTA DE CURSOS ========*/
 .main_content {
     max-width: calc(100% - 40px);
@@ -66,7 +128,8 @@
 .main_content > header > h2 {
     font-size: 2.0em;
     margin-bottom: 50px;
-    color: #333
+    font-weight: bold;
+    color: var(--blue);
 }
 
 .main_content_products {
@@ -74,21 +137,34 @@
     margin-bottom: 20px;
 }
 
-.main_content_products > header > h4 {
+.main_content_products header a h4 {
     color: var(--blue);
     font-weight: 700;
     margin: 10px 0;
     font-size: 1.4em;
 }
 
-.main_content_products > header > p, .main_content_products > p{
+.main_content_products header a p, 
+.main_content_products a p{
+    color: var(--blue);
     margin: 10px 0;
     font-size: 1.2em;
 }
 
-.main_content_products > header > img {
+.main_content_products header:hover a ,
+.main_content_products header a:hover,
+.main_content_products:hover a p{
+    text-decoration: underline;
+    color: var(--blue);
+}
+
+.main_content_products > header > a > img {
     width: 100%;
     opacity: 0.9;
+}
+
+.main_content_products > header img:hover{
+    opacity: 1.0;
 }
 
 /*=========== OPTIN ===========*/
@@ -103,6 +179,7 @@
     padding: 40px 20px;
     margin: 0 auto;
     display: flex;
+    flex-wrap: nowrap;
 }
 
 .main_optin_content header, .main_optin_content form { flex-basis: 50%; }
@@ -140,6 +217,11 @@
     color: #FFF;
     padding: 0 20px;
     border: none;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background: var(--green_l);
 }
 
 /*======= DOBRA DA ESCOLA =======*/
@@ -163,9 +245,11 @@
     text-align: center;
 }
 
-.main_content_school > header > h2 , .main_content_school_awards > header > h4{
+.main_content_school > header > h2 , 
+.main_content_school_awards > header > h4{
     font-size: 2.2em;
-    color: #333;
+    color: var(--blue) !important;
+    font-weight: bold;
 }
 
 .main_content_school_description { margin: 30px 0px; }
@@ -182,9 +266,14 @@
     padding: 5px 0px;
 }
 
-.main_content_school_description > header > h4 > a { 
-    font-size: 1.2em;  
+.main_content_school_description header h4,
+.main_content_school_description header h4 a{ 
+    font-size: 1.1em;  
     color: #FFF;
+}
+
+.main_content_school_description header h4 a:hover{
+    text-decoration: underline;
 }
 
 .main_content_school_description > p{
@@ -227,9 +316,20 @@
     margin-bottom: 50px;
 }
 
-.main_content_school_address > header > h4 { font-size: 2em; }
+.main_content_school_address > header > h4 { 
+    font-size: 2em; 
+    color: var(--blue);
+    font-weight: bold;
+}
 
-.main_content_school_address > p { font-size:  1.8em; }
+.main_content_school_address > p > a{ 
+    font-size:  1.8em; 
+    color: var(--blue) !important;
+}
+
+.main_content_school_address > p > a:hover{
+    text-decoration: underline;
+}
 
 /*======= TUTOR ======*/
 .main_tutor {
@@ -304,6 +404,10 @@
 
 .tutor_social_network > h6, .tutor_social_network > h6 > a { color: #FFF; }
 
+.tutor_social_network h6 a:hover{
+    text-decoration: underline;
+}
+
 /*===== CTA =====*/
 .footer_cta {
     width: 100%;
@@ -314,7 +418,7 @@
     max-width: 1300px;
     padding: 40px 20px;
     text-align: center;
-    color: #333;
+    color: var(--blue);
 }
 
 .footer_cta_header > header {
@@ -322,7 +426,13 @@
     font-weight: 700 !important;
 }
 
-.footer_cta_header > h3{ margin-top: 50px; }
+.footer_cta_header > header > h2{
+    font-weight: bold;
+}
+
+.footer_cta_header > h3{
+    margin-top: 50px; 
+}
 
 .footer_cta_header > h3 > a{
     border-radius: 5px;
@@ -332,6 +442,10 @@
     background: var(--blue);
     color: #FFF;
     font-size: 1.2em;
+}
+
+.footer_cta_header > h3 > a:hover{
+    background: var(--blue_h);
 }
 
 /*===== FOOTER =====*/
@@ -350,19 +464,41 @@
     font-size: 1.6em;
     margin-bottom: 40px;
     font-weight: 700;
-    color: #333;
+    color: var(--blue);
 }
 
-.footer_content > article > header > h3 { margin-bottom: 20px; }
+.footer_content > article > header > h3 {
+    color: var(--blue);
+    margin-bottom: 20px; 
+}
 
 .footer_content_menu, .footer_content_links { flex-basis: 25%; }
 
 .footer_content_about { flex-basis: 50%; }
 
-.footer_content_menu > ul > li { margin: 10px 0; }
+.footer_content_about > p{
+    color: var(--blue);
+}
+
+.footer_content_menu > ul > li { 
+    color: var(--blue);
+    margin: 10px 0; 
+}
+
+.footer_content_menu > ul > li > a{
+    color: var(--blue);
+}
 
 .footer_content_links > ul > li { margin: 10px 0; }
 
+.footer_content_links > ul > li > a{
+    color: var(--blue);
+}
+
+.footer_content_links > ul > li > a:hover,
+.footer_content_menu > ul > li > a:hover{
+    text-decoration: underline;
+}
 
 .footer_rigths { 
     width: 100%;
@@ -370,7 +506,7 @@
     padding: 20px 0;
     background-color: #F7F7F7;
     border-top: 1px solid #EBEBEB;
-    color: #666;
+    color: var(--blue);
     font-weight: 300;
 }
 
@@ -385,4 +521,87 @@
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.9);
+}
+
+/** MEDIA */
+@media(max-width:52em){
+    .header_main_content_menu{
+        display: none !important;
+    }
+
+    .header_main_content_menu_mobile{
+        display: block !important;
+    }
+
+    .main_content_products{
+        flex-basis: 100%;
+    }
+
+    .main_content header h2{
+        margin-top: 20px;
+    }
+
+    .main_optin_content{
+        flex-wrap: wrap;
+    }
+
+    .main_optin_content header,
+    .main_optin_content form{
+        flex-basis: 100%;
+        margin: 0 auto;
+    }
+
+    .main_optin_content header{
+        margin-bottom: 40px;
+    }
+
+    .main_optin_content header h2,
+    .main_optin_content header p{
+        text-align: center;
+    }
+
+    .main_optin_content form input{
+        border-radius: 5px !important;
+        -moz-border-radius: 5px !important;
+        -webkit-border-radius: 5px !important;
+        padding: 10px 10px !important;
+    }
+}
+
+@media (max-width: 32em) {
+    .main_content header h2{
+        font-size: 1.4em;
+    }
+
+    .main_content_products header a h4,
+    .main_content_products header a p{
+        font-size: 1em;
+    }
+
+    .main_content_products a p{
+        font-size: 1em;
+    }
+
+    .main_content_products .img_star{
+        display: none;
+    }
+
+    .main_optin_content form{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .main_optin_content header{
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    .main_optin_content header h2{
+        font-size: 1em;
+    }
+    
+    .main_optin_content form input{
+        flex-basis: 100%;
+        margin: 10px 0;
+    }
 }

@@ -6,7 +6,7 @@
                 <h2>Quer receber o nosso conteúdo exclusivo? Assine nossa lista VIP :)</h2>
             </header>
 
-            <h3><a href="#">Entrar para lista VIP</a></h3>
+            <h3><a href="#" class="transition">Entrar para lista VIP</a></h3>
         </article>
     </div>
 
@@ -21,10 +21,10 @@
             </header>
 
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">A Escola</a></li>
-                <li><a href="#">Contato</a></li>
+                <li><a href="#" class="transition">Home</a></li>
+                <li><a href="#" class="transition">Blog</a></li>
+                <li><a href="#" class="transition">A Escola</a></li>
+                <li><a href="#" class="transition">Contato</a></li>
             </ul>
         </article>
 
@@ -34,9 +34,9 @@
             </header>
 
             <ul>
-                <li><a href="#">Política de privacidade</a></li>
-                <li><a href="#">Aviso Legal</a></li>
-                <li><a href="#">Termos de uso</a></li>
+                <li><a href="#" class="transition">Política de privacidade</a></li>
+                <li><a href="#" class="transition">Aviso Legal</a></li>
+                <li><a href="#" class="transition">Termos de uso</a></li>
             </ul>
         </article>
 

@@ -6,16 +6,19 @@
 
         <article class="main_content_school_description">
             <header>
-                <h4>
-                    <a class='icon-facebook2' href="<?= $manufacturer->getCeo()->getFacebookAccount(); ?>">
+                <h4 class="icon-facebook2">
+                    <a target="_blank" class='transition' href="<?= $manufacturer->getCeo()->getFacebookAccount(); ?>">
                         Facebook
                     </a>
                 </h4>
-                <h4>
-                    <a class='icon-instagram' href="<?= $manufacturer->getCeo()->getInstagramAccount(); ?>">Instagram</a></h4>
-                <h4>
-                    <a class='icon-trello' href="<?= $manufacturer->getCeo()->getFacebookAccount(); ?>">
-                        Trello
+                <h4 class="icon-instagram">
+                    <a target="_blank" class=' transition' href="<?= $manufacturer->getCeo()->getInstagramAccount(); ?>">
+                        Instagram
+                    </a>
+                </h4>
+                <h4 class="icon-github">
+                    <a target="_blank" class='transition' href="<?= $manufacturer->getCeo()->getFacebookAccount(); ?>">
+                        GitHub
                     </a>
                 </h4>
             </header>
@@ -90,6 +93,7 @@
                 <a  title='nosso endereço' alt='nosso endereço' 
                     href="https://www.google.com/maps/search/Avenida+Maia,+N%C2%BA+22,+bairro+Litor%C3%A2nea/@-2.5062442,-44.2953628,14z/data=!3m1!4b1"
                     target="a_blank"
+                    class="transition"
                     >
                         <?= $manufacturer->showAddress(); ?>
                 </a>
