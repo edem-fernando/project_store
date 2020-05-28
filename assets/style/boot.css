@@ -6,15 +6,26 @@
     font-size: 1em;
     font-family: 'Ubuntu', sans-serif;
 }
+
+:root{
+    --blue : #0069D9;
+    --green: #319046;
+    --red: #CA2D3C;
+    --yellow: #E0A800;
+}
+
 .ds_none {
     display: none !important;
 }
+
 h2, h1,h3,h4,h5 {
     font-weight: 200;
 }
+
 nav ul li {
     list-style : none;
 }
+
 ul li {
     list-style: none;
 }

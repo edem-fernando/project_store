@@ -28,13 +28,13 @@ $(function () {
         $(this).css({
             cursor : 'pointer',
             background : '#FFF',
-            color : '#563D7C'
+            color : '#0069D9'
         });
     });
 
     $('.btn').on('mouseout', function(){
         $(this).css({
-            background : '#28a745',
+            background : '#0069D9',
             color : '#FFF'
         });
     });
@@ -48,11 +48,11 @@ $(function () {
     $('.footer_cta_header > h3 > a').on('mouseenter', function(event) {
         $(this).css({
             background:'#FFF',
-            color: '#563D7C'
+            color: '#0069D9'
         });
     }).on('mouseout', function(e) {
         $(this).css({
-            background:'#563D7C',
+            background:'#0069D9',
             color: '#FFF'
         });
     });
