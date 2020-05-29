@@ -20,7 +20,6 @@ $products[1] = new Source\Company\Product("HTML5 e CSS3", '249.55', $manufacture
 $products[2] = new Source\Company\Product("jQuery", '349.99', $manufacturer);
 $products[3] = new Source\Company\Product("Bootstrap", '249.55', $manufacturer);
 
-
 $new_ceo = new \Source\Models\Ceo();
 $user_ceo = $new_ceo->searchById(1);
 

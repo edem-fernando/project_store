@@ -1,7 +1,7 @@
 <div class='main_school'>
     <section class="main_content_school">
         <header>
-            <h2>Conheça um pouco mais sobre a escola</h2>
+            <h2>Conheça mais a escola!</h2>
         </header>
 
         <article class="main_content_school_description">
@@ -83,6 +83,46 @@
                     </header>
                 </article>
             </div>
+        </section>
+
+        <section class="main_content_school_about">
+            <header class="main_content_school_header">
+                <h4>Sobre a Escola!</h4>
+            </header>
+
+            <article class="radius">
+                <header>
+                    <h2>Cursos 100% online</h2>
+                    <p>
+                        Todas as aulas são gravadas em estúdio profissional
+                        para que você tenha a máxima qualidade de imagem e vídeo
+                    </p>
+                </header>
+            </article>
+
+            <article class="radius">
+                <header>
+                    <h2>Suporte Especializado</h2>
+                    <p>Nossos cursos possuem suporte diretamente com um profissional da nossa equipe oficial</p>
+                </header>
+            </article>
+
+            <article class="radius">
+                <header>
+                    <h2>Mais de 1000 aulas dividas em mais de 10 módulos</h2>
+                    <p>
+                        A modularização que você precisa para compreender de maneira
+                        mais objetiva
+                    </p>
+                </header>
+            </article>
+
+            <article class="radius">
+                <header>
+                    <h2>Certificados reconhecidos em mais de 17 países</h2>
+                    <p>Ao concluir os cursos você terá certificados com reconhecimento em diversos países da América Latina</p>
+                </header>
+            </article>
         </section>
 
         <article class="main_content_school_address">

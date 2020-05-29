@@ -137,9 +137,8 @@ ul li {
     text-shadow: none;
 }
 
-/**
-Buttons
-.btn {
+/** Buttons */
+.btn-boot {
     display: inline-block;
     padding: 10px 20px;
     background: #888;
@@ -150,70 +149,69 @@ Buttons
     color: #fff;
     text-shadow: 1px 1px rgba(0,0,0,0.3);
 }
-.btn:hover {
+.btn-boot:hover {
     color: #fff;
     text-decoration: none;
     background: #666;
 }
-.btn-small { font-size: 0.875em; }
-.btn-big { font-size: 1.275em; }
-.btn-green { background: var(--green); }
-.btn-blue { background: var(--blue); }
-.btn-yellow { background: var(--yellow); }
-.btn-red { background: var(--red);}
-.btn-green:hover { background: var(--green_h); }
-.btn-blue:hover { background: var(--blue_h); }
-.btn-yellow:hover { background: var(--yellow_h); }
-.btn-red:hover { background: var(--red_h); }
-.btn-green-out {
+.btn-boot-small { font-size: 0.875em; }
+.btn-boot-big { font-size: 1.275em; }
+.btn-boot-green { background: var(--green); }
+.btn-boot-blue { background: var(--blue); }
+.btn-boot-yellow { background: var(--yellow); }
+.btn-boot-red { background: var(--red);}
+.btn-boot-green:hover { background: var(--green_h); }
+.btn-boot-blue:hover { background: var(--blue_h); }
+.btn-boot-yellow:hover { background: var(--yellow_h); }
+.btn-boot-red:hover { background: var(--red_h); }
+.btn-boot-green-out {
     color: var(--green);
     border: 1px solid var(--green);
     background: none;
     text-shadow: none;
 }
-.btn-green-out:hover {
+.btn-boot-green-out:hover {
     color: var(--green_h);
     border: 1px solid var(--green_h);
     background: none;
     text-shadow: none;
 }
-.btn-blue-out {
+.btn-boot-blue-out {
     color: var(--blue);
     border: 1px solid var(--blue);
     background: none;
     text-shadow: none; 
 }
-.btn-blue-out:hover {
+.btn-boot-blue-out:hover {
     color: var(--blue_h);
     border: 1px solid var(--blue_h);
     background: none;
     text-shadow: none; 
 }
-.btn-yellow-out {
+.btn-boot-yellow-out {
     color: var(--yellow);
     border: 1px solid var(--yellow);
     background: none;
     text-shadow: none; 
 }
-.btn-yellow-out:hover {
+.btn-boot-yellow-out:hover {
     color: var(--yellow_h);
     border: 1px solid var(--yellow_h);
     background: none;
     text-shadow: none; 
 }
-.btn-red-out {
+.btn-boot-red-out {
     color: var(--red);
     border: 1px solid var(--red);
     background: none;
     text-shadow: none;
 }
-.btn-red-out:hover {
+.btn-boot-red-out:hover {
     color: var(--red_h);
     border: 1px solid var(--red_h);
     background: none;
     text-shadow: none;
 }
-*/
 
 /* flex box */
 .flex { display: flex; flex-wrap: wrap; }

@@ -246,6 +246,7 @@
 }
 
 .main_content_school > header > h2 , 
+.main_content_school .main_content_school_header h4,
 .main_content_school_awards > header > h4{
     font-size: 2.2em;
     color: var(--blue) !important;
@@ -253,6 +254,35 @@
 }
 
 .main_content_school_description { margin: 30px 0px; }
+
+.main_content_school .main_content_school_about{
+    justify-content: space-around;
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.main_content_school_about article{
+    flex-basis: calc(50% - 40px);
+    margin: 20px 20px;
+    background-color: #EBEBEB;
+    padding: 20px;
+}
+
+
+.main_content_school_about article header h2{
+    font-size: 1.2em;
+    color: var(--blue);
+    font-weight: bold;
+}
+
+.main_content_school_about article header p{
+    font-size: 1em;
+    margin-top: 10px;
+}
 
 .main_content_school_description > header{ 
     margin-top: -30px; 
@@ -299,13 +329,20 @@
     padding: 10px 0px;
 }
 
-.box_awards {
+.box_awards{
     margin: 20px 20px;
     display: flex;
     flex-wrap: wrap;
 }
 
-.box_awards > article{
+.main_content_school .main_content_school_header{
+    flex-basis: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.box_awards  article,
+.main_content_school .main_content_school_skils article{
     flex-basis: 50%;
     margin: 10px 0px;
 }
@@ -313,7 +350,7 @@
 .main_content_school_address {
     flex-basis: 100%;
     text-align: center;
-    margin-bottom: 50px;
+    margin: 30px 0px;
 }
 
 .main_content_school_address > header > h4 { 
@@ -472,7 +509,15 @@
     margin-bottom: 20px; 
 }
 
-.footer_content_menu, .footer_content_links { flex-basis: 25%; }
+.footer_content_menu, .footer_content_links { 
+    flex-basis: 25%;
+}
+
+.footer_content_menu header h3,
+.footer_content_links header h3,
+.footer_content_about header h3{
+    font-weight: bold;
+}
 
 .footer_content_about { flex-basis: 50%; }
 
@@ -541,16 +586,6 @@
         margin-top: 20px;
     }
 
-    .main_optin_content{
-        flex-wrap: wrap;
-    }
-
-    .main_optin_content header,
-    .main_optin_content form{
-        flex-basis: 100%;
-        margin: 0 auto;
-    }
-
     .main_optin_content header{
         margin-bottom: 40px;
     }
@@ -569,13 +604,17 @@
 }
 
 @media (max-width: 32em) {
-    .main_content header h2{
-        font-size: 1.4em;
-    }
+    .main_content header h2,
+    .main_content_school header h2,
+    .main_content_school_awards header h4,
+    .main_content_school_address header h4{
+        font-size: 1.8em;
+    }   
 
     .main_content_products header a h4,
-    .main_content_products header a p{
-        font-size: 1em;
+    .main_content_products header a p,
+    .main_content_school_about .main_content_school_header{
+        font-size: 1.1em;
     }
 
     .main_content_products a p{
@@ -586,22 +625,59 @@
         display: none;
     }
 
-    .main_optin_content form{
-        display: flex;
-        flex-wrap: wrap;
-    }
-    
     .main_optin_content header{
         padding: 0;
         margin: 0 auto;
     }
 
-    .main_optin_content header h2{
+    .main_optin_content header h2,
+    .main_content_school_description p{
         font-size: 1em;
     }
-    
+
     .main_optin_content form input{
         flex-basis: 100%;
         margin: 10px 0;
+    }
+
+    .footer_content_about,
+    .box_awards article{
+        flex-basis: 100%;
+        margin-top: 20px;
+    }
+
+    .main_content_school_about article,
+    .main_content_school_tutor_network .tutor_social_network{
+        flex-basis: 100%;
+        margin-top: 20px;
+    }
+
+    .footer_content_links,
+    .footer_content_menu{
+        flex-basis: 50%;
+    }
+}
+
+@media(max-width: 76em){
+    .main_optin_content form input{
+        margin: 10px !important;
+    }
+}
+
+@media(max-width: 69em){
+    .main_optin_content{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .main_optin_content header,
+    .main_optin_content form{
+        flex-basis: 100% !important;
+        margin: 0 auto;
+    }
+
+    .main_optin_content form{
+        display: flex;
+        flex-wrap: wrap;
     }
 }
