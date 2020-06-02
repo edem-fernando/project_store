@@ -12,19 +12,16 @@ class Course extends Model
 {
 
     /**
-     * $safe: dados que não podem ser manipulados 
      * @var static $safe
      */
     protected static $safe = ["idCourses", "created_at", "updated_at"];
 
     /**
-     * $required: dados obrigatórios para a tabela no banco 
      * @var static $required
      */
     protected static $required = ["name", "description", "price", "idTutor"];
 
     /**
-     * $table: nome da tabela no banco
      * @var static $table
      */
     protected static $table = "courses";
@@ -89,9 +86,8 @@ class Course extends Model
      */
     public function all(int $limit = 30, int $offset = 0, string $columns = "*"): ?array 
     {
-        $all = $this->read("SELECT {$columns} FROM " . self::$safe . " LIMIT :l OFFSET :o", "l={$limit}&o={$offset}");
+        $all = $this->read("SELECT {$columns} FROM " . self::$table . " LIMIT :limit OFFSET :offset", "limit={$limit}&offset={$offset}");
         if ($this->fail() || !$all->rowCount()) {
-            $this->message()->error("Não foi possível realizar a busca, tente mais tarde!");
             return null;
         }
 

@@ -41,12 +41,12 @@ class View
     }
     
     /**
-     * @param string $template_name
+     * @param string $templateName
      * @param array $data
      * @return string
      */
-    public function render(string $template_name, array $data): string
+    public function render(string $templateName, array $data): string
     {
-        return $this->engine->render($template_name, $data);
+        return $this->engine->render($templateName, $data);
     }
 }

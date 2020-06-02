@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Source\Core;
-
 
 use Source\Support\Message;
 
@@ -18,7 +16,6 @@ class Session
     public function __construct()
     {
         if (!session_id()) {
-            session_save_path(CONF_SESS_PATH);
             session_start();
         }
     }
@@ -71,7 +68,6 @@ class Session
     }
     
     /**
-     * has(): verifica se há uma sessão
      * @return bool
      */
     public function has(string $key): bool
