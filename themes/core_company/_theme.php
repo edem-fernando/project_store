@@ -15,10 +15,10 @@
             <div class="header_main_content">        
                 <nav class="header_main_content_menu">
                     <ul>
-                        <li><a href="#" class="transition" title="Home">Home</a></li>
-                        <li><a href="#" class="transition" title="A empresa">A empresa</a></li>
-                        <li><a href="#" class="transition" title="Blog">Blog</a></li>
-                        <li><a href="#" class="transition" title="Entrar">Entrar</a></li>
+                        <li><a href="<?= url(); ?>" class="transition" title="Home">Home</a></li>
+                        <li><a href="<?= url("/escola"); ?>" class="transition" title="A empresa">A Escola</a></li>
+                        <li><a href="<?= url("/blog"); ?>" class="transition" title="Blog">Blog</a></li>
+                        <li><a href="<?= url("/entrar"); ?>" class="transition" title="Entrar">Entrar</a></li>
                     </ul>
                 </nav>
 
@@ -27,10 +27,10 @@
                         <li>
                             <span class="main_header_content_menu_mobile_obj icon-menu icon icon-notext transition"></span>
                             <ul class="main_header_content_menu_mobile_sub transition ds_none">
-                                <li><a href="#" class="transition" title="Home">Home</a></li>
-                                <li><a href="#" class="transition" title="A empresa">A empresa</a></li>
-                                <li><a href="#" class="transition" title="Blog">Blog</a></li>
-                                <li><a href="#" class="transition" title="Entrar">Entrar</a></li>
+                                <li><a href="<?= url(); ?>" class="transition" title="Home">Home</a></li>
+                                <li><a href="<?= url("/escola"); ?>" class="transition" title="A empresa">A Escola</a></li>
+                                <li><a href="<?= url("/blog"); ?>" class="transition" title="Blog">Blog</a></li>
+                                <li><a href="<?= url("/entrar"); ?>" class="transition" title="Entrar">Entrar</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -49,7 +49,7 @@
                         <h2>Quer receber o nosso conteúdo exclusivo? Assine nossa lista VIP :)</h2>
                     </header>
 
-                    <h3><a href="#" class="transition">Entrar para lista VIP</a></h3>
+                    <h3><a href="<?= url("/lista-vip"); ?>" class="transition">Entrar para lista VIP</a></h3>
                 </article>
             </div>
 
@@ -64,10 +64,10 @@
                     </header>
 
                     <ul>
-                        <li><a href="#" class="transition">Home</a></li>
-                        <li><a href="#" class="transition">Blog</a></li>
-                        <li><a href="#" class="transition">A Escola</a></li>
-                        <li><a href="#" class="transition">Contato</a></li>
+                        <li><a href="<?= url(); ?>" class="transition">Home</a></li>
+                        <li><a href="<?= url("/escola"); ?>" class="transition">A Escola</a></li>
+                        <li><a href="<?= url("/blog"); ?>" class="transition">Blog</a></li>
+                        <li><a href="<?= url("/contatos"); ?>" class="transition">Contatos</a></li>
                     </ul>
                 </article>
 
@@ -77,9 +77,9 @@
                     </header>
 
                     <ul>
-                        <li><a href="#" class="transition">Política de privacidade</a></li>
-                        <li><a href="#" class="transition">Aviso Legal</a></li>
-                        <li><a href="#" class="transition">Termos de uso</a></li>
+                        <li><a href="<?= url("/politicas"); ?>" class="transition">Política de privacidade</a></li>
+                        <li><a href="<?= url("/aviso"); ?>" class="transition">Aviso Legal</a></li>
+                        <li><a href="<?= url("/termos"); ?>" class="transition">Termos de uso</a></li>
                     </ul>
                 </article>
 

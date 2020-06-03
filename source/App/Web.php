@@ -20,6 +20,10 @@ class Web extends Controller
     {
         parent::__construct(__DIR__ . "/../../themes/" . CONF_VIEW_THEME . "/");
     }
+    
+    /**
+     * Site home
+     */
     public function home(): void
     {
         $courses = (new Course())->all(4);
@@ -31,7 +35,7 @@ class Web extends Controller
                 url(),
                 theme("/assets/images/shared.jpg")
         );
-        
+
         echo $this->view->render("home", [
             "head" => $head,
             "courses" => $courses,
@@ -40,6 +44,23 @@ class Web extends Controller
         ]);
     }
     
+    public function blog(): void
+    {
+        $head = $this->seo->render(
+                "Blog  - " . CONF_SITE_NAME,
+                CONF_SITE_DESC,
+                url("/blog"),
+                theme("/assets/images/shared.jpg")
+        );
+
+        echo $this->view->render("blog", [
+            "head" => $head
+        ]);
+    }
+    /**
+     * Site error
+     * @param array $data
+     */
     public function error(array $data): void
     {
         

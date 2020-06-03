@@ -485,6 +485,113 @@
     background: var(--blue_h);
 }
 
+/*===== BLOG =====*/
+.main_blog {
+    margin: 40px auto;
+}
+.main_blog > header{
+    color: var(--blue);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.main_blog > header > h2,
+.main_blog > header > p{
+    font-size: 2.0em;
+}
+
+.main_blog > header > p {
+    margin-top: 20px;
+}
+
+.main_blog .main_blog_content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.main_blog .main_blog_content article{
+    flex-basis: calc(33.33% - 40px);
+    margin: 20px;
+}
+
+.main_blog .main_blog_content article > header > h4 {
+    margin: 20px 0px;
+    font-size: 1.5em;
+}
+
+.main_blog .main_blog_content article > header > h4 > a,
+.main_blog .main_blog_content article > p > a{
+    color: var(--blue);
+    font-weight: 700;
+}
+
+.main_blog .main_blog_content article > p {
+    font-size: 0.875em;
+}
+
+.main_blog .main_blog_content article > p > a:hover{
+    text-decoration: underline;
+}
+
+.main_blog .main_blog_content article > header > a > img{
+    opacity: 0.9;
+}
+
+.main_blog .main_blog_content article > header > a > img:hover{
+    opacity: 1.0;
+}
+
+
+.main_blog .main_blog_content article > header > h4 > a:hover{
+    color: var(--blue_h);
+    text-decoration: underline;
+}
+
+/*===== PAGINATOR =====*/
+.paginator{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.paginator .paginator_item {
+    background: #fff;
+    padding: 15px;
+    color: #000;
+    padding: 8px 16px;
+    border: 1px solid #cccccc;
+    border-right: 0;
+}
+
+.paginator a:last-child{
+    border-right: 1px solid #cccccc;
+}
+
+.paginator .paginator_item:hover{
+    background: var(--blue);
+    color: #fff;
+}
+
+.paginator .paginator_active{
+    background: #ccc;
+}
+
+.paginator a:first-child{
+    border-radius: 4px 0px 0px 4px;
+    -webkit-border-radius: 4px 0px 0px 4px;
+    -moz-border-radius: 4px 0px 0px 4px;
+
+}
+
+.paginator a:last-child{
+    border-radius: 0px 5px 5px 0px;
+    -webkit-border-radius: 0px 5px 5px 0px;
+    -moz-border-radius: 0px 5px 5px 0px;
+}
+
 /*===== FOOTER =====*/
 .footer_content {
     max-width: 1300px;
@@ -655,6 +762,14 @@
     .footer_content_links,
     .footer_content_menu{
         flex-basis: 50%;
+    }
+
+    .main_blog .main_blog_content article {
+        flex-basis: calc(100% - 40px);
+    }
+
+    .main_blog > header > p {
+        font-size: 1.4em;
     }
 }
 

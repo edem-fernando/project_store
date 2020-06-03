@@ -5,6 +5,9 @@
     text-decoration: none;
     font-size: 1em;
     font-family: 'Ubuntu', sans-serif;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 :root{
@@ -34,6 +37,13 @@ img {
 
 .ds_none {
     display: none !important;
+}
+
+.container {
+    display: block;
+    width: 1200px;
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 h2, h1,h3,h4,h5 {
