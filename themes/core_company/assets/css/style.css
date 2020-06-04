@@ -762,6 +762,103 @@
     margin: 30px 0px;
 }
 
+/*======== OPTIN SUCCESS =========*/
+.main_optin_message{
+    color: var(--blue);
+    text-align: center;
+    margin: 40px auto;
+}
+
+.main_optin_message header{
+    margin: 30px auto;
+}
+
+.main_optin_message header h2 {
+    font-size: 3em;
+}
+
+.main_optin_message p {
+    font-size: 1.4em;
+}
+
+/*======= POLITCS, TERMS, WARNING =======*/
+.terms_page {
+   margin: 50px auto; 
+}
+
+.terms_page .terms_page_header{
+    text-align: center;
+    color: var(--blue);
+    font-size: 2em;
+    margin: 30px auto;
+}
+
+.terms_page_content {
+    width: 800px;
+    margin: 0 auto;
+    padding: 60px 0 0 0;
+}
+
+.htmlchars {
+    color: var(--color-default);
+}
+
+.htmlchars :first-child {
+    margin-top: 0;
+}
+
+.htmlchars h2,
+.htmlchars h3,
+.htmlchars h4,
+.htmlchars h5 {
+    margin: 40px 0 20px 0;
+    font-weight: var(--weight-bold);
+}
+
+.htmlchars h2 {
+    font-size: 1.8em;
+}
+
+.htmlchars h3 {
+    font-size: 1.6em;
+}
+
+.htmlchars h4 {
+    font-size: 1.4em;
+}
+
+.htmlchars h5 {
+    font-size: 1.2em;
+}
+
+.htmlchars p {
+    margin-top: 25px;
+}
+
+.htmlchars ul,
+.htmlchars ol {
+    margin: 20px 0 20px 40px;
+}
+
+.htmlchars ul {
+    list-style: circle;
+}
+
+.htmlchars ol li,
+.htmlchars ul li {
+    margin-top: 5px;
+}
+
+.htmlchars a {
+    color: var(--blue);
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+}
+
+.htmlchars a:hover {
+    text-decoration: underline;
+}
+
 /*===== MEDIA ======= */
 @media(max-width:52em){
     .header_main_content_menu{

@@ -25,10 +25,10 @@ $route->get("/blog/{postName}", "Web:blogPost");
 $route->get("/escola", "Web:school");
 $route->get("/entrar", "Web:login");
 
-$route->get("/receber-noticias", "Web:optinRegister");
+$route->post("/receber-noticias", "Web:optinRegister");
 $route->get("/lista-vip", "Web:optinVip");
+$route->post("/lista-vip/link", "Web:optinVipSuccess");
 
-$route->get("/contatos", "Web:contacts");
 $route->get("/politicas", "Web:politcs");
 $route->get("/aviso", "Web:warning");
 $route->get("/termos", "Web:terms");

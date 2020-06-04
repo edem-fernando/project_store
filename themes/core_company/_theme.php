@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <?= $head; ?>
         <title>Core Company</title>
-        <link rel="shortcut icon" href="<?= theme("/assets/images/favicon.png"); ?>" />
         <link rel="stylesheet" type="text/css" href="<?= theme("/assets/css/fonticon.css"); ?>">
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<?= theme("/assets/css/boot.css"); ?>">
@@ -68,7 +67,7 @@
                         <li><a href="<?= url(); ?>" class="transition">Home</a></li>
                         <li><a href="<?= url("/escola"); ?>" class="transition">A Escola</a></li>
                         <li><a href="<?= url("/blog"); ?>" class="transition">Blog</a></li>
-                        <li><a href="<?= url("/contatos"); ?>" class="transition">Contatos</a></li>
+                        <li><a href="<?= url("/entrar"); ?>" class="transition">Entrar</a></li>
                     </ul>
                 </article>
 

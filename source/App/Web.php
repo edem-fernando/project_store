@@ -106,34 +106,105 @@ class Web extends Controller
         ]);
     }
     
+    /**
+     * Site Optin Register
+     */
     public function optinRegister(): void
     {
-        
+        $head = $this->seo->render(
+                CONF_SITE_NAME . " - " . CONF_SITE_TITLE,
+                CONF_SITE_DESC,
+                url("/receber-noticias"),
+                theme("/assets/images/shared.jpg")
+        );
+
+        echo $this->view->render("optin-register", [
+            "head" => $head
+        ]);
     }
     
+    /**
+     * Site Optin Vip
+     */
     public function optinVip(): void
     {
-        
+        $head = $this->seo->render(
+                "Lista vip da " . CONF_SITE_NAME,
+                CONF_SITE_DESC,
+                url("/lista-vip"),
+                theme("/assets/images/shared.jpg")
+        );
+
+        echo $this->view->render("optin-vip", [
+            "head" => $head
+        ]);
     }
     
-    public function contacts(): void
+    /**
+     * Site Optin Vip Success
+     */
+    public function optinVipSuccess(): void
     {
-        
+        $head = $this->seo->render(
+                "Lista vip da " . CONF_SITE_NAME,
+                CONF_SITE_DESC,
+                url("/lista-vip/link"),
+                theme("/assets/images/shared.jpg")
+        );
+
+        echo $this->view->render("optin-vip-success", [
+            "head" => $head
+        ]);
     }
     
+    /**
+     * Site Politcs
+     */
     public function politcs(): void
     {
-        
+        $head = $this->seo->render(
+                "Políticas de privacidade " . CONF_SITE_NAME,
+                CONF_SITE_DESC,
+                url("/politicas"),
+                theme("/assets/images/shared.jpg"));
+
+        echo $this->view->render("politcs", [
+            "head" => $head
+        ]);
     }
     
+    /**
+     * Site Warning
+     */
     public function warning(): void
     {
-        
+        $head = $this->seo->render(
+                "Aviso Legal " . CONF_SITE_NAME,
+                CONF_SITE_DESC,
+                url("/aviso"),
+                theme("/assets/images/shared.jpg")
+        );
+
+        echo $this->view->render("warning", [
+            "head" => $head
+        ]);
     }
     
+    /**
+     * Site Terms
+     */
     public function terms(): void
     {
-        
+        $head = $this->seo->render(
+                "Termos de Uso " . CONF_SITE_NAME,
+                CONF_SITE_DESC,
+                url("/termos"),
+                theme("/assets/images/shared.jpg")
+        );
+
+        echo $this->view->render("terms", [
+            "head" => $head
+        ]);
     }
     
     /**

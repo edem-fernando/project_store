@@ -18,6 +18,7 @@
     --blue: #4fc0e8;
     --blue_h: #3aadd9;
     --blue_l: #66d4f1;
+    --color-default: #555555;
 
     --yellow: #fdcd56;
     --yellow_h: #f5b945;
@@ -26,6 +27,17 @@
     --red: #eb5463;
     --red_h: #d94452;
     --red_l: #f76c82;
+
+    --font-small: 0.875em;
+    --font-normal: 1em;
+    --font-medium: 1.2em;
+    --font-large: 1.4em;
+    
+    --weight-light: 300;
+    --weight-normal: 400;
+    --weight-bold: 700;
+    --weight-black: 900;
+
 }
 
 a{
