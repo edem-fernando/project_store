@@ -5,8 +5,6 @@ namespace Source\Support;
 use CoffeeCode\Cropper\Cropper;
 
 /**
- * Class Thumb: utiliza o componente Cropper do packgist para gerar
- * miniaturas de imagens e liberar cache dessas imagens
  * @package Source\Support
  */
 class Thumb 
@@ -26,8 +24,7 @@ class Thumb
         $this->uploads = CONF_UPLOAD_DIR;
     }
     
-    /**
-     * make(): gera a miniatura da image
+    /**=
      * @param string $image
      * @param int $width
      * @param int $heigth
@@ -39,8 +36,6 @@ class Thumb
     }
     
     /**
-     * flush(): libera cach para imagens, caso não seja passado o 
-     * caminho ele liberará todas as imagens
      * @param string $image
      * @return void
      */

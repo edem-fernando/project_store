@@ -675,7 +675,94 @@
     background: rgba(0,0,0,0.9);
 }
 
-/** MEDIA */
+/*======= error ======= */
+.error_page_404 {
+    text-align: center;
+    color: var(--blue);
+    margin: 40px 0px 250px 0px;
+}
+
+.error_page_404 .error{
+    font-size: 8em;
+}
+
+.error_page_404 .error,
+.error_page_404 p {
+    margin-bottom: 40px;
+}
+
+.error_page_404 p:last-of-type{
+    font-size: 1.4em;
+}
+
+.error_page_404 h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.error_page_404 a {
+    padding: 20px 50px;
+    background: var(--blue);
+    color: #fff;
+    margin-top: 40px;
+    font-size: 1.3em;
+}
+
+.error_page_404 a:hover{
+    background: var(--blue_h);
+}
+
+/*======= login ===== */
+.main_login {
+    text-align: center;
+    margin: 20px 0px 250px 0px;
+    max-width: 100%;
+}
+
+.main_login header {
+    margin: 0px 0px 50px 0px;
+    font-size: 3em;
+    color: var(--blue);
+}
+
+.main_login .main_login_login {
+    border: 3px solid var(--blue_h);
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    width: 50%;
+    font-size: 2.2em;
+    margin: 0 auto;
+}
+
+.main_login .main_login_login form .main_login_campus{
+    color: var(--blue);
+    margin: 30px 0px;
+}
+
+.main_login .main_login_login form .main_login_campus input{
+    padding: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid var(--blue);
+}
+
+.main_login .main_login_login form button {
+    margin-bottom: 20px;
+}
+
+.main_login .main_login_login form input:focus{
+    background-color: #ffffff;
+    border-color: var(--blue);
+    outline: 0;
+}
+
+.main_login .main_login_login form .main_login_campus label{
+    margin: 30px 0px;
+}
+
+/*===== MEDIA ======= */
 @media(max-width:52em){
     .header_main_content_menu{
         display: none !important;

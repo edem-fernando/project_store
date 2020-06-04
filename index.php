@@ -33,6 +33,11 @@ $route->get("/politicas", "Web:politcs");
 $route->get("/aviso", "Web:warning");
 $route->get("/termos", "Web:terms");
 
+/**
+ * Error Routes
+ */
+$route->namespace("Source\App")->group("/ops");
+$route->get("/{errcode}", "Web:error");
 
 /**
  * Route

@@ -21,13 +21,14 @@
             </article>
         <?php endfor; ?>
 
-        <nav class="paginator">
+        <!--<nav class="paginator">
             <a class='paginator_item transition' title="Primeira página" href="https://www.localhost/fsphp/blog/page/1"><<</a>
             <span class="paginator_item paginator_active">1</span>
             <a class='paginator_item transition' title="Página 2" href="#">2</a>
             <a class='paginator_item transition' title="Página 3" href="#">3</a>
             <a class='paginator_item transition' title="Página 4" href="#">4</a>
             <a class='paginator_item transition' title="Última página" href="#">>></a>
-        </nav> 
+        </nav>-->
+        <?= $paginator; ?>
     </section>
 </article>
