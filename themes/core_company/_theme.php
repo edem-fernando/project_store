@@ -48,8 +48,7 @@
                     <header>
                         <h2>Quer receber o nosso conteúdo exclusivo? Assine nossa lista VIP :)</h2>
                     </header>
-
-                    <h3><a href="<?= url("/lista-vip"); ?>" class="transition">Entrar para lista VIP</a></h3>
+                    <a href="<?= url("/lista-vip"); ?>" class="btn-boot btn-boot-blue radius transition">Entrar para lista VIP</a>
                 </article>
             </div>
 

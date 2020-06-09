@@ -70,6 +70,10 @@ ul li {
     list-style: none;
 }
 
+input {
+    max-width: 100%;
+}
+
 /** Box styles */
 .radius {
     --radius: 4px;

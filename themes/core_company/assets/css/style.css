@@ -456,32 +456,20 @@
     padding: 40px 20px;
     text-align: center;
     color: var(--blue);
+    margin: 0 auto;
 }
 
-.footer_cta_header > header {
+.footer_cta_header header h2{
     font-size: 1.6em;
-    font-weight: 700 !important;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
-.footer_cta_header > header > h2{
-    font-weight: bold;
+.footer_cta_header a{
+    font-size: 1.4em;
 }
 
-.footer_cta_header > h3{
-    margin-top: 50px; 
-}
-
-.footer_cta_header > h3 > a{
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    padding: 10px 40px;
-    background: var(--blue);
-    color: #FFF;
-    font-size: 1.2em;
-}
-
-.footer_cta_header > h3 > a:hover{
+.footer_cta_header a:hover{
     background: var(--blue_h);
 }
 
@@ -713,53 +701,51 @@
 }
 
 /*======= login ===== */
-.main_login {
+.main_login{
     text-align: center;
-    margin: 20px 0px 250px 0px;
-    max-width: 100%;
-}
-
-.main_login header {
-    margin: 0px 0px 50px 0px;
-    font-size: 3em;
+    margin: 40px auto;
     color: var(--blue);
 }
 
-.main_login .main_login_login {
-    border: 3px solid var(--blue_h);
-    border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    width: 50%;
-    font-size: 2.2em;
-    margin: 0 auto;
+.main_login header{
+    font-size: 2.8em;
+    margin: 30px auto;
 }
 
-.main_login .main_login_login form .main_login_campus{
+.main_login p {
+    font-size: 2em;
+}
+
+.main_login_form{
+    margin: 20px auto 100px auto;
+    text-align: center;
+}
+
+.main_login_form button{
+    font-size: 1.4em;
+}
+
+.main_login_form form .main_login_campus{
     color: var(--blue);
-    margin: 30px 0px;
+    font-size: 1.8em;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.main_login .main_login_login form .main_login_campus input{
-    padding: 10px;
+.main_login_form form .main_login_campus label{
+    flex-basis: 100%;
+    margin: 15px auto;
+}
+
+.main_login_form form .main_login_campus input{
+    flex-basis: 50%;
+    margin: 20px auto;
+    border-bottom: 3px solid var(--blue);
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 2px solid var(--blue);
-}
-
-.main_login .main_login_login form button {
-    margin-bottom: 20px;
-}
-
-.main_login .main_login_login form input:focus{
-    background-color: #ffffff;
-    border-color: var(--blue);
-    outline: 0;
-}
-
-.main_login .main_login_login form .main_login_campus label{
-    margin: 30px 0px;
+    outline: none;
+    text-align: center;
 }
 
 /*======== OPTIN SUCCESS =========*/
@@ -783,7 +769,7 @@
 
 /*======= POLITCS, TERMS, WARNING =======*/
 .terms_page {
-   margin: 50px auto; 
+    margin: 50px auto; 
 }
 
 .terms_page .terms_page_header{
