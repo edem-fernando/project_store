@@ -5,27 +5,20 @@ namespace Source\Models;
 use Source\Core\Model;
 
 /**
- * Class Address
- * @package Source/Models
+ * Class Address Active Record Pattern
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
+ * @package Source\Models
  */
 class Address extends Model 
 {
-    /**
-     * $safe: dados que não podem ser manipulados 
-     * @var static $safe
-     */
+    /** @var array $safe no update or create */
     protected static $safe = ["idAddress", "created_at", "updated_at"];
     
-    /**
-     * $required: dados obrigatórios para a tabela no banco 
-     * @var static $required
-     */
+    /** @var array $required table fields */
     protected static $required = ["city", "state", "neighborhood", "number"];
     
-    /**
-     * $table: nome da tabela no banco
-     * @var static $table
-     */
+    /** @var string $table database table */
     private static $table = "address";
 
     /**
@@ -34,7 +27,7 @@ class Address extends Model
      * @param string $neighborhood
      * @param string $number
      * @param string $complement
-     * @return Address | null
+     * @return Address|null
      */
     public function bootstrap(string $city, string $state, string $neighborhood, string $number, string $complement = null): ?Address 
     {
@@ -50,14 +43,16 @@ class Address extends Model
      * @param string $terms
      * @param string $params
      * @param string $columns
-     * @return Address | null
+     * @return Address|null
      */
     public function search(string $terms, string $params, string $columns = "*"): ?Address 
     {
         $search = $this->read("SELECT {$columns} FROM " . self::$table . " WHERE {$terms}", $params);
+        
         if ($this->fail() || !$search->rowCount()) {
             return null;
         }
+        
         return $search->fetchObject(__CLASS__);
     }
     
@@ -74,7 +69,7 @@ class Address extends Model
     /**
      * @param string $city
      * @param string $columns
-     * @return Address | null
+     * @return Address|null
      */
     public function searchByCity(string $city, string $columns = "*"): ?Address 
     {
@@ -84,7 +79,7 @@ class Address extends Model
     /**
      * @param string $state
      * @param string $columns
-     * @return Address | null
+     * @return Address|null
      */
     public function searchByState(string $state, string $columns = "*"): ?Address 
     {
@@ -94,7 +89,7 @@ class Address extends Model
     /**
      * @param string $neighborhood
      * @param string $columns
-     * @return Address | null
+     * @return Address|null
      */
     public function searchByNeighborhood(string $neighborhood, string $columns = "*") 
     {
@@ -105,7 +100,7 @@ class Address extends Model
      * @param int $limit
      * @param int $offset
      * @param string $columns
-     * @return array | null
+     * @return array|null
      */
     public function all(int $limit = 30, int $offset = 0, string $columns = "*"): ?array
     {
@@ -117,7 +112,7 @@ class Address extends Model
     }
 
     /**
-     * @return Address | null
+     * @return Address|null
      */
     public function save(): ?Address
     {
@@ -129,12 +124,14 @@ class Address extends Model
         // ADDRESS UPDATE
         if (!empty($this->idAddress)) {
             $idAddress = $this->idAddress;
+            
             if ($this->search("number = :n AND idAddress != :i", "n={$this->number}&i={$idAddress}")) {
                 $this->message()->warning("O endereço informado já está cadastrado");
                 return null;
             }
             
             $this->updated(self::$table, $this->safe(),"idAddress = :i", "i={$idAddress}");
+            
             if ($this->fail()) {
                 $this->message()->error("Error ao atualizar, por favor verifique os dados!");
                 return null;
@@ -144,17 +141,19 @@ class Address extends Model
         // ADDRESS INSERT
         if (empty($this->idAddress)) {
             $idAddress = $this->insert(self::$table, $this->safe());
+            
             if ($this->fail()) {
                 $this->message()->error("Erro ao cadastrar endereço, verifique os dados");
                 return null;
             }
         }
+        
         $this->data = ($this->searchById($idAddress))->data();
         return $this;
     }
 
     /**
-     * @return Address | null
+     * @return Address|null
      */
     public function destroy(): ?Address
     {
@@ -166,6 +165,7 @@ class Address extends Model
             $this->message()->error("Não foi possível remover o usuário, verifique os dados!");
             return null;
         }
+        
         $this->message = "Usuário removido com sucesso";
         $this->data = null;
         return $this;

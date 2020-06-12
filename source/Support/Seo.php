@@ -5,9 +5,10 @@ namespace Source\Support;
 use CoffeeCode\Optimizer\Optimizer;
 
 /**
- * Class Seo: utiliza o componente Optimizer do packgist para gerar
- * o SEO de uma página WEB, servindo tags para Facebook, Twitter cards etc
- * @package Source\Support;
+ * Class Seo
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
+ * @package Source\Support
  */
 class Seo 
 {
@@ -73,7 +74,7 @@ class Seo
      * @param string $desc
      * @param string $url
      * @param string $image
-     * @return object | null
+     * @return object|null
      */
     public function data(string $title = null, string $desc = null, string $url = null, string $image = null): ?object
     {

@@ -3,6 +3,7 @@
 ##################################
 ##   CONTATANTES DA APLICAÇÃO   ##
 ##################################
+
 // DATABASE
 define("CONF_DB_HOST", "localhost");
 define("CONF_DB_USER", "root");

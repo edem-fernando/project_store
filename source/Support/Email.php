@@ -7,9 +7,9 @@ use PHPMailer\PHPMailer\Exception as MailException;
 use Source\Support\Message;
 
 /**
- * Class Email: utiliza os componentes do packgist para enviar e-mails autenticados
- * PHPMailer\PHPMailer\PHPMailer
- * PHPMailer\PHPMailer\Exception as MailException;
+ * Class Email
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
  * @package Source\Support
  */
 class Email 
@@ -72,8 +72,8 @@ class Email
     }
     
     /**
-     * @param $fromEmail = CONF_MAIL_SENDER["address"]
-     * @param $fromName = CONF_MAIL_SENDER["name"]
+     * @param $fromEmail
+     * @param $fromName
      * @return bool
      */
     public function send($fromEmail = CONF_MAIL_SENDER["address"], $fromName = CONF_MAIL_SENDER["name"]): bool
@@ -104,6 +104,7 @@ class Email
                     $this->mail->addAttachment($path, $name);
                 }
             }
+            
             $this->mail->send();
             return true;
         } catch (MailException $exception) {

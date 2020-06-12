@@ -6,6 +6,8 @@ use Source\Support\Message;
 
 /**
  * Classs Session
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
  * @package Session
  */
 class Session 
@@ -22,7 +24,7 @@ class Session
     
     /**
      * @param string $name
-     * @return array | null
+     * @return array|null
      */
     public function __get(string $name): ?array
     {
@@ -39,7 +41,7 @@ class Session
     }
     
     /**
-     * @return object | null
+     * @return object|null
      */
     public function all(): ?object
     {
@@ -94,8 +96,7 @@ class Session
     }
     
     /**
-     * depois a remove
-     * @return Message | null
+     * @return Message|null
      */
     public function flash(): ?Message
     {
@@ -104,11 +105,12 @@ class Session
             $this->unset($flash);
             return $flash;
         }
+        
         return null;
     }
     
     /**
-     * @return void
+     * csrf method
      */
     public function csrf(): void
     {

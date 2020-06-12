@@ -5,6 +5,9 @@ namespace Source\Support;
 use CoffeeCode\Cropper\Cropper;
 
 /**
+ * Class Thumb
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
  * @package Source\Support
  */
 class Thumb 
@@ -24,7 +27,7 @@ class Thumb
         $this->uploads = CONF_UPLOAD_DIR;
     }
     
-    /**=
+    /**
      * @param string $image
      * @param int $width
      * @param int $heigth
@@ -37,7 +40,6 @@ class Thumb
     
     /**
      * @param string $image
-     * @return void
      */
     public function flush(string $image = null): void
     {
@@ -45,6 +47,7 @@ class Thumb
             $this->cropper->flush("{$this->uploads}/{$image}");
             return;
         }
+        
         $this->cropper->flush();
         return;
     }

@@ -1,33 +1,24 @@
 <?php
 
-
 namespace Source\Models;
-
 
 use Source\Core\Model;
 
 /**
- * Class Ceo
+ * Class Ceo Active Record Pattern
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
  * @package Source\Models
  */
 class Ceo extends Model 
 {
-    /**
-     * $safe: dados que não podem ser manipulados 
-     * @var static $safe
-     */
+    /** @var array $safe no update or create */
     protected static $safe = ["idCeo", "created_at", "updated_at"];
     
-    /**
-     * $required: dados obrigatórios para a tabela no banco 
-     * @var static $required
-     */
+    /** @var array $required table fields */
     protected static $required = ["name", "document", "email"];
     
-    /**
-     * $table: nome da tabela no banco
-     * @var static $table
-     */
+    /** @var string $table database table */
     private static $table = "ceo";
 
     /**
@@ -35,36 +26,42 @@ class Ceo extends Model
      * @param string $document
      * @param string $email
      * @param int $idAddress
-     * @return Ceo | null
+     * @return Ceo|null
      */
-    public function bootstrap(string $name, string $document, string $email, int $idAddress = null): ?Ceo 
-    {
+    public function bootstrap(
+            string $name,
+            string $document,
+            string $email,
+            int $idAddress = null
+    ): ?Ceo {
         $this->idAddress = $idAddress;
         $this->name = $name;
         $this->document = $document;
         $this->email = $email;
         return $this;
     }
-    
+
     /**
      * @param string $terms
      * @param string $params
      * @param string $columns
-     * @return Address | null
+     * @return Address|null
      */
     public function search(string $terms, string $params, string $columns = "*"): ?Ceo
     {
         $search = $this->read("SELECT {$columns} FROM " . self::$table . " WHERE {$terms}", $params);
+        
         if ($this->fail() || !$search->rowCount()) {
             return null;
         }
+        
         return $search->fetchObject(__CLASS__);
     }
 
     /**
      * @param int $id
      * @param string $columns
-     * @return Ceo | null
+     * @return Ceo|null
      */
     public function searchById(int $id, string $columns = "*"): ?Ceo 
     {
@@ -74,7 +71,7 @@ class Ceo extends Model
     /**
      * @param string $email
      * @param string $columns
-     * @return Ceo | null
+     * @return Ceo|null
      */
     public function searchByEmail(string $email, string $columns = "*"): ?Ceo 
     {
@@ -84,7 +81,7 @@ class Ceo extends Model
     /**
      * @param string $document
      * @param string $columns
-     * @return Ceo | null
+     * @return Ceo|null
      */
     public function searchByDocument(string $document, string $columns = "*"): ?Ceo 
     {
@@ -95,7 +92,7 @@ class Ceo extends Model
      * @param int $limit
      * @param int $offset
      * @param string $columns
-     * @return array | null
+     * @return array|null
      */
     public function all(int $limit = 30, int $offset = 0, string $columns = "*"): ?array
     {
@@ -105,11 +102,12 @@ class Ceo extends Model
             $this->message()->error("Não foi possível realizar a busca, tente mais tarde");
             return null;
         }
+        
         return $all->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
 
     /**
-     * @return Ceo | null
+     * @return Ceo|null
      */
     public function save(): ?Ceo
     {
@@ -131,6 +129,7 @@ class Ceo extends Model
         // CEO UPDATE
         if (!empty($this->idCeo)) {
             $idCeo = $this->idCeo;
+            
             if ($this->search("email = :e AND idCeo != :idCeo", "e={$this->email}&idCeo={$idCeo}")) {
                 $this->message()->warning("O e-mail informado já está cadastrado!");
                 return null;
@@ -142,6 +141,7 @@ class Ceo extends Model
             }
 
             $this->updated(self::$table, $this->safe(), "idCeo = :idCeo", "idCeo={$idCeo}");
+            
             if ($this->fail()) {
                 $this->message()->error("Error ao atualizar, por favor verifique os dados!");
                 return null;
@@ -161,17 +161,19 @@ class Ceo extends Model
             }
 
             $idCeo = $this->insert(self::$table, $this->safe());
+            
             if ($this->fail()) {
                 $this->message()->error("Error ao cadastrar, por favor verifique os dados!");
                 return null;
             }
         }
+        
         $this->data = ($this->searchById($idCeo))->data();
         return $this;
     }
 
     /**
-     * @return Ceo | null
+     * @return Ceo|null
      */
     public function destroy(): ?Ceo
     {

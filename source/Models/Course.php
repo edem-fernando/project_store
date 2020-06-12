@@ -5,25 +5,21 @@ namespace Source\Models;
 use Source\Core\Model;
 
 /**
- * Class Course
+ * Class Course Active Record Pattern
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
  * @package Source\Models
  */
 class Course extends Model 
 {
 
-    /**
-     * @var static $safe
-     */
+    /** @var array $safe no update or create */
     protected static $safe = ["idCourses", "created_at", "updated_at"];
 
-    /**
-     * @var static $required
-     */
+    /** @var array $required table fields */
     protected static $required = ["name", "description", "price", "idTutor"];
 
-    /**
-     * @var static $table
-     */
+    /** @var string $table database table */
     protected static $table = "courses";
 
     /**
@@ -31,10 +27,15 @@ class Course extends Model
      * @param string $description
      * @param float $price
      * @param int $idTutor
-     * @return Company | null
+     * @return Company|null
      */
-    public function bootstrap(string $name, string $description, float $price, int $idTutor, string $imagePath = null): ?Course 
-    {
+    public function bootstrap(
+            string $name,
+            string $description,
+            float $price,
+            int $idTutor,
+            string $imagePath = null
+    ): ?Course {
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
@@ -47,21 +48,23 @@ class Course extends Model
      * @param string $terms
      * @param string $params
      * @param string $columns
-     * @return Course | null
+     * @return Course|null
      */
     public function search(string $terms, string $params, string $columns = "*"): ?Course 
     {
         $search = $this->read("SELECT {$columns} FROM " . self::$table . " WHERE {$terms}", $params);
+        
         if ($this->fail() || !$search->rowCount()) {
             return null;
         }
+        
         return $search->fetchObject(__CLASS__);
     }
 
     /**
      * @param int $idCourses
      * @param string $columns
-     * @return Course | null
+     * @return Course|null
      */
     public function searchById(int $idCourses, string $columns = "*"): ?Course 
     {
@@ -71,7 +74,7 @@ class Course extends Model
     /**
      * @param string $name
      * @param string $columns
-     * @return Course | null
+     * @return Course|null
      */
     public function searchByName(string $name, string $columns = "*"): ?Course 
     {
@@ -82,11 +85,12 @@ class Course extends Model
      * @param int $limit
      * @param int $offset
      * @param string $columns
-     * @return array | null
+     * @return array|null
      */
     public function all(int $limit = 30, int $offset = 0, string $columns = "*"): ?array 
     {
         $all = $this->read("SELECT {$columns} FROM " . self::$table . " LIMIT :limit OFFSET :offset", "limit={$limit}&offset={$offset}");
+        
         if ($this->fail() || !$all->rowCount()) {
             return null;
         }
@@ -95,7 +99,7 @@ class Course extends Model
     }
 
     /**
-     * @return Course | null
+     * @return Course|null
      */
     public function save(): ?Course 
     {
@@ -107,12 +111,14 @@ class Course extends Model
         // COUSE UPDATE
         if (!empty($this->idCourses)) {
             $idCourses = $this->idCourses;
+            
             if ($this->search("name = :name AND idCourses != :idCourses", "name={$this->name}&idCourses={$idCourses}")) {
                 $this->message()->warning("O curso informado já está cadastrado!");
                 return null;
             }
 
             $this->updated(self::$table, $this->safe(), "idCourses = :idCourses", "idCourses={$idCourses}");
+            
             if ($this->fail()) {
                 $this->message()->error("Não foi possível atualizar o curso!");
                 return null;
@@ -133,7 +139,7 @@ class Course extends Model
     }
 
     /**
-     * @return Ceo | null
+     * @return Ceo|null
      */
     public function destroy(): ?Course 
     {

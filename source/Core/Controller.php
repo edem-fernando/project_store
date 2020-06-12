@@ -7,6 +7,8 @@ use Source\Support\Seo;
 
 /**
  * Class Controller
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
  * @package Source\Core
  */
 class Controller 

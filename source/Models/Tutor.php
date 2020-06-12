@@ -5,27 +5,20 @@ namespace Source\Models;
 use Source\Core\Model;
 
 /**
- * Class Tutor
+ * Class Tutor Active Record Pattern
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
  * @package Source\Models
  */
 class Tutor extends Model
 {
-    /**
-     * $safe: dados que não podem ser manipulados 
-     * @var static $safe
-     */
+    /** @var array $safe no update or create */
     protected static $safe = ["idTutor", "created_at", "updated_at"];
     
-    /**
-     * $required: dados obrigatórios para a tabela no banco 
-     * @var static $required
-     */
+    /** @var array $required table fields */
     protected static $required = ["name", "document", "email"];
     
-    /**
-     * $table: nome da tabela no banco
-     * @var static $table
-     */
+    /** @var string $table database table */
     private static $table = "tutor";
 
     /**
@@ -34,10 +27,15 @@ class Tutor extends Model
      * @param string $document
      * @param string $email
      * @param string $descriptionTutor
-     * @return Ceo | null
+     * @return Ceo|null
      */
-    public function bootstrap(string $idAddress, string $name, string $document, string $email, string $descriptionTutor = null): ?Tutor 
-    {
+    public function bootstrap(
+            string $idAddress,
+            string $name,
+            string $document,
+            string $email,
+            string $descriptionTutor = null
+    ): ?Tutor {
         $this->idAddress = $idAddress;
         $this->name = $name;
         $this->document = $document;
@@ -45,26 +43,28 @@ class Tutor extends Model
         $this->descriptionTutor = $descriptionTutor;
         return $this;
     }
-    
+
     /**
      * @param string $terms
      * @param string $params
      * @param string $columns
-     * @return Tutor | null
+     * @return Tutor|null
      */
     public function search(string $terms, string $params, string $columns = "*"): ?Tutor
     {
         $search = $this->read("SELECT {$columns} FROM " . self::$table . " WHERE {$terms}", $params);
+        
         if ($this->fail() || !$search->rowCount()) {
             return null;
         }
+        
         return $search->fetchObject(__CLASS__);
     }
     
     /**
      * @param int $id
      * @param string $columns
-     * @return Tutor | null
+     * @return Tutor|null
      */
     public function searchById(int $id, string $columns = "*"): ?Tutor
     {
@@ -74,7 +74,7 @@ class Tutor extends Model
     /**
      * @param string $name
      * @param string $columns
-     * @return Tutor | null
+     * @return Tutor|null
      */
     public function searchByName(string $name, string $columns = "*"): ?Tutor
     {
@@ -84,7 +84,7 @@ class Tutor extends Model
     /**
      * @param string $document
      * @param string $columns
-     * @return Tutor | null
+     * @return Tutor|null
      */
     public function searchByDocument(string $document, string $columns = "*"): ?Tutor
     {
@@ -94,7 +94,7 @@ class Tutor extends Model
     /**
      * @param string $email
      * @param string $columns
-     * @return Tutor | null
+     * @return Tutor|null
      */
     public function searchByEmail(string $email, string $columns = "*"): ?Tutor
     {
@@ -105,20 +105,21 @@ class Tutor extends Model
      * @param int $limit
      * @param int $offset
      * @param string $columns
-     * @return array | null
+     * @return array|null
      */
     public function all(int $limit = 30, int $offset = 0, string $columns = "*"): ?array 
     {
         $all = $this->read("SELECT {$columns} FROM " . self::$table . " LIMIT :l OFFSET :o", "l={$limit}&o={$offset}");
+        
         if ($this->fail() || !$all->rowCount()) {
             return null;
         }
+        
         return $all->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
     
     /**
-     * SAVE(): valida e persiste os dados no banco
-     * @return Tutor | null
+     * @return Tutor|null
      */
     public function save(): ?Tutor
     {
@@ -140,6 +141,7 @@ class Tutor extends Model
         // TUTOR UPDATE
         if (!empty($this->idTutor)) {
             $idTutor = $this->idTutor;
+            
             if ($this->search("name = :name AND idTutor != :idTutor", "name={$this->name}&idTutor={$idTutor}")) {
                 $this->message()->warning("O tutor informado já está cadastrado!");
                 return null;
@@ -180,17 +182,19 @@ class Tutor extends Model
             }
             
             $idTutor = $this->insert(self::$table, $this->safe());
+            
             if ($this->fail()) {
                 $this->message()->error("Error ao cadastrar, por favor verifique os dados!");
                 return null;
             }
         }
+        
         $this->data = ($this->searchById($idTutor))->data();
         return $this;
     }
 
     /**
-     * @return Tutor | null
+     * @return Tutor|null
      */
     public function destroy(): ?Tutor
     {
@@ -202,6 +206,7 @@ class Tutor extends Model
             $this->message()->error("Não foi possível remover o usuário, verifique os dados!");
             return null;
         }
+        
         $this->message()->success("Usuário removido com sucesso!");
         $this->data = null;
         return $this;

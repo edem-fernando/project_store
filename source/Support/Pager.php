@@ -5,16 +5,18 @@ namespace Source\Support;
 use CoffeeCode\Paginator\Paginator;
 
 /**
- * Class Pager: gerar paginação através do componente CoffeeCode\Paginator\Paginator
+ * Class Pager
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
  * @package Source\Support
  */
 class Pager extends Paginator
 {
     /**
      * @param mixed $link
-     * @param string | null $title
-     * @param array  | null $first
-     * @param array  | null $last
+     * @param null|string $title
+     * @param null|array $first
+     * @param null|array $last
      */
     public function __construct($link = null, ?string $title = null, ?array $first = null, ?array $last = null) 
     {

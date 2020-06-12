@@ -12,10 +12,15 @@ use \Source\Models\Ceo;
 
 /**
  * Web Controller
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
  * @author edem
  */
 class Web extends Controller
 {
+    /**
+     * Web Constructor
+     */
     public function __construct() 
     {
         parent::__construct(__DIR__ . "/../../themes/" . CONF_VIEW_THEME . "/");

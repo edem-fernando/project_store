@@ -1,20 +1,24 @@
 <?php $v->layout("_theme"); ?>
 <article class="main_login">
     <header>
-        <h2>Faça parte da lista VIP!</h2>
+        <h2>Fazer login</h2>
     </header>
-    <p>Cadastre-se na lista VIP e tenha acesso a conteúdos exclusivos :)</p>
+    <p>Insira os dados para realizar o login.</p>
 </article>
 
-<div class="main_login_form">
-    <form method="post" enctype="multipart/form-data">
-        <div class="main_login_campus">
-            <label class="icon-user">Seu nome</label>
-            <input type="text" name="name" id="name" required/>
+<div class="container">
+    <div class="main_login_form_content">
+        <form method="post" enctype="multipart/form-data">
+            <div class="main_login_campus">
+                <label class="icon-user">Nome</label>
+                <input type="text" name="name" id="email" placeholder="Informe o seu nome"/>
+            </div>
 
-            <label class="icon-mail3">Seu e-mail</label>
-            <input type="email" name="email" id="email" required/>
-        </div>
-        <button class="btn-boot btn-boot-blue transition radius">Quero participar!</button>
-    </form>
+            <div class="main_login_campus">
+                <label class="icon-envelop">Senha:</label>
+                <input type="email" name="email" id="email" placeholder="Informe o seu email"/>
+            </div>
+            <button class="btn-boot btn-boot-blue transition radius">Quero participar</button>
+        </form>
+    </div>
 </div>

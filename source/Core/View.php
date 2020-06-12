@@ -6,6 +6,8 @@ use League\Plates\Engine;
 
 /**
  * Class View
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
  * @package Source\Core
  */
 class View 

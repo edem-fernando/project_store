@@ -1,13 +1,16 @@
 <?php
 
-
 namespace Source\Core;
-
 
 use \Source\Core\Conn;
 use Source\Support\Message;
 
-
+/**
+ * Class Model Layer Supertype Pattern
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
+ * @package Source\Core
+ */
 abstract class Model 
 {
     /** @var array */
@@ -28,7 +31,7 @@ abstract class Model
     }
     
     /** 
-     * @return object | null 
+     * @return object|null 
      */
     protected function data(): ?object 
     {
@@ -36,7 +39,7 @@ abstract class Model
     }
 
     /** 
-     * @return Message | null 
+     * @return Message|null 
      */
     protected function message(): ?Message 
     {
@@ -44,7 +47,7 @@ abstract class Model
     }
 
     /** 
-     * @return PDOException | null 
+     * @return \PDOException|null 
      */
     protected function fail(): ?\PDOException 
     {
@@ -83,7 +86,7 @@ abstract class Model
     /**
      * @param string $select
      * @param array $params
-     * @return PDOStatement | null
+     * @return \PDOStatement|null
      */
     protected function read(string $select, string $params = null): ?\PDOStatement 
     {
@@ -112,7 +115,7 @@ abstract class Model
     /**
      * @param string $table
      * @param array $data
-     * @return int | null
+     * @return int|null
      */
     protected function insert(string $table, array $data): ?int 
     {
@@ -122,6 +125,7 @@ abstract class Model
 
             $stmt = Conn::getInstance()->prepare("INSERT INTO {$table} ($columns) VALUES ($values)");
             $stmt->execute($this->filter($data));
+            
             return Conn::getInstance()->lastInsertId();
         } catch (\PDOException $exception) {
             $this->fail = $exception;
@@ -134,12 +138,13 @@ abstract class Model
      * @param array $data
      * @param string $terms
      * @param string $params
-     * @return int | null
+     * @return int|null
      */
     protected function updated(string $table, array $data, string $terms, string $params): ?int
     {
         try {
             $data_set = [];
+            
             foreach ($data as $bind => $value) {
                 $data_set[] = "{$bind} = :{$bind}";
             }
@@ -161,7 +166,7 @@ abstract class Model
      * @param string $table
      * @param string $terms
      * @param string $params
-     * @return int | null
+     * @return int|null
      */
     protected function delete(string $table, string $terms, string $params): ?int 
     {
@@ -170,6 +175,7 @@ abstract class Model
 
             $stmt = Conn::getInstance()->prepare("DELETE FROM {$table} WHERE {$terms}");
             $stmt->execute($params);
+            
             return ($stmt->rowCount() ?? 1);
         } catch (\PDOException $exception) {
             $this->fail = $exception;
@@ -179,7 +185,7 @@ abstract class Model
 
     /**
      * @param array $data
-     * @return array | null
+     * @return array|null
      */
     protected function filter(array $data): ?array 
     {
@@ -191,8 +197,7 @@ abstract class Model
     }
 
     /**
-     * estes dados encontram-se em cada filha desta
-     * @return array | null
+     * @return array|null
      */
     protected function safe(): ?array 
     {
@@ -200,6 +205,7 @@ abstract class Model
         foreach (static::$safe as $unset) {
             unset($safe[$unset]);
         }
+        
         return $safe;
     }
     
@@ -214,6 +220,7 @@ abstract class Model
                 return false;
             }
         }
+        
         return true;
     }
 }

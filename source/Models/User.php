@@ -2,11 +2,12 @@
 
 namespace Source\Models;
 
-use \PDO;
 use \Source\Core\Model;
 
 /**
- * Class User
+ * Class User Active Record Pattern
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
  * @package Source\Models
  */
 class User extends Model
@@ -25,7 +26,7 @@ class User extends Model
      * @param string $document
      * @param string $email
      * @param string $password
-     * @return User | null
+     * @return User|null
      */
     public function bootstrap(string $name, string $document, string $email, string $password): ?User
     {
@@ -38,7 +39,7 @@ class User extends Model
     
     /**
      * @param string $columns
-     * @return User | null
+     * @return User|null
      */
     public function search(string $terms, string $params, string $columns = "*"): ?User
     {
@@ -52,7 +53,7 @@ class User extends Model
     /**
      * @param int $id
      * @param string $columns
-     * @return array | null
+     * @return array|null
      */
     public function searchById(int $id, string $columns = "*"): ?User
     {
@@ -62,7 +63,7 @@ class User extends Model
     /**
      * @param string $name
      * @param string $columns
-     * @return array | null
+     * @return array|null
      */
     public function searchByName(string $name, string $columns = "*"): ?User
     {
@@ -72,7 +73,7 @@ class User extends Model
     /**
      * @param string $email
      * @param string $columns
-     * @return array | null
+     * @return array|null
      */
     public function searchByEmail(string $email, string $columns = "*"): ?User
     {
@@ -82,7 +83,7 @@ class User extends Model
     /**
      * @param string $document
      * @param string $columns
-     * @return array | null
+     * @return array|null
      */
     public function searchByDocument(string $document, string $columns): ?User
     {
@@ -93,7 +94,7 @@ class User extends Model
      * @param int $limit
      * @param int $offset
      * @param string $columns
-     * @return array | null
+     * @return array|null
      */
     public function all(int $limit = 30, int $offset = 0, string $columns = "*"): ?array
     {
@@ -101,11 +102,11 @@ class User extends Model
         if ($this->fail() || !$all->rowCount()) {
             return null;
         }
-        return $all->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+        return $all->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
     
     /**
-     * @return User | null
+     * @return User|null
      */
     public function save(): ?User
     {
@@ -131,6 +132,7 @@ class User extends Model
         // User Update
         if (!empty($this->idUser)) {
             $idUser = $this->idUser;
+            
             if ($this->search("email = :email AND idUser != :idUser", "email={$this->email}&idUser={$idUser}")) {
                 $this->message()->error("Email já cadastrado!");
                 return null;
@@ -171,18 +173,19 @@ class User extends Model
             }
 
             $idUser = $this->insert(self::$table, $this->safe());
+            
             if ($this->fail()) {
                 $this->message->error("Não foi possível cadastrar o usuário, por favor verifique os dados!");
                 return null;
             }
         }
+        
         $this->data = ($this->searchById($idUser))->data();
         return $this;
     }
     
     /**
-     * o apaga do banco de dados
-     * @return User | null
+     * @return User|null
      */
     public function destroy(): ?User
     {

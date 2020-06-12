@@ -5,27 +5,20 @@ namespace Source\Models;
 use Source\Core\Model;
 
 /**
- * Class Company
+ * Class Company Active Record Pattern
+ * 
+ * @author Edem Fernando Bastos <edem.fbc@gmail.com>
  * @package Source\Models
  */
 class Company extends Model 
 {
-    /**
-     * $safe: dados que não podem ser manipulados 
-     * @var static $safe
-     */
+     /** @var array $safe no update or create */
     protected static $safe = ["idCompany", "created_at", "updated_at"];
     
-    /**
-     * $required: dados obrigatórios para a tabela no banco 
-     * @var static $required
-     */
+    /** @var array $required table fields */
     protected static $required = ["idCeo", "idAddress", "fantasyName", "socialReason", "cnpj"];
     
-    /**
-     * $table: nome da tabela no banco
-     * @var static $table
-     */
+    /** @var string $table database table */
     private static $table = "company";
     
     /**
@@ -34,10 +27,15 @@ class Company extends Model
      * @param string $fantasyName
      * @param string $socialReason
      * @param string $cnpj
-     * @return Company | null
+     * @return Company|null
      */
-    public function bootstrap(int $idCeo, int $idAddress, string $fantasyName, string $socialReason, string $cnpj): ?Company 
-    {
+    public function bootstrap(
+            int $idCeo,
+            int $idAddress,
+            string $fantasyName,
+            string $socialReason,
+            string $cnpj
+    ): ?Company {
         $this->idCeo = $idCeo;
         $this->idAddress = $idAddress;
         $this->fantasyName = $fantasyName;
@@ -45,26 +43,28 @@ class Company extends Model
         $this->cnpj = $cnpj;
         return $this;
     }
-    
+
     /**
      * @param string $terms
      * @param string $params
      * @param string $columns
-     * @return Address | null
+     * @return Address|null
      */
     public function search(string $terms, string $params, string $columns = "*"): ?Company
     {
         $search = $this->read("SELECT {$columns} FROM " . self::$table . " WHERE {$terms}", $params);
+        
         if ($this->fail() || !$search->rowCount()) {
             return null;
         }
+        
         return $search->fetchObject(__CLASS__);
     }
     
     /**
      * @param int $idCompany
      * @param string $columns
-     * @return Company | null
+     * @return Company|null
      */
     public function searchById(int $idCompany, string $columns = "*"): ?Company
     {
@@ -74,7 +74,7 @@ class Company extends Model
     /**
      * @param string $fantasyName
      * @param string $columns
-     * @return Company | null
+     * @return Company|null
      */
     public function searchByFantasyName(string $fantasyName, string $columns = "*"): ?Company
     {
@@ -84,7 +84,7 @@ class Company extends Model
     /**
      * @param string $socialReason
      * @param string $columns
-     * @return Company | null
+     * @return Company|null
      */
     public function searchBySocialReason(string $socialReason, string $columns = "*") 
     {
@@ -94,7 +94,7 @@ class Company extends Model
     /**
      * @param string $cnpj
      * @param string $columns
-     * @return Company | null
+     * @return Company|null
      */
     public function searchByCnpj(string $cnpj, string $columns = "*"): ?Company
     {
@@ -105,19 +105,21 @@ class Company extends Model
      * @param int $limit
      * @param int $offset
      * @param string $columns
-     * @return array | null
+     * @return array|null
      */
     public function all(int $limit = 30, int $offset = 0, string $columns = "*"): ?array
     {
         $all = $this->read("SELECT {$columns} FROM " . self::$table . " LIMIT :l OFFSET :o", "l={$limit}&o={$offset}");
+        
         if ($this->fail() || !$all->rowCount()) {
             return null;
         }
+        
         return $all->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
     }
 
     /**
-     * @return Company | null
+     * @return Company|null
      */
     public function save(): ?Company
     {
@@ -134,6 +136,7 @@ class Company extends Model
         // COMPANY UPDATE
         if (!empty($this->idCompany)) {
             $idCompany = $this->idCompany;
+            
             if ($this->search("socialReason = :rS AND idCompany != :idCompany", "rS={$this->socialReason}&id={$idCompany}")) {
                 $this->message()->warning("A Razão Social já está cadastrada!");
                 return null;
@@ -145,6 +148,7 @@ class Company extends Model
             }
 
             $this->updated(self::$table, $this->safe(), "idCompany = :idCompany", "idCompany={$idCompany}");
+            
             if ($this->fail()) {
                 $this->message()->error("Error ao atualizar, por favor verifique os dados!");
                 return null;
@@ -169,6 +173,7 @@ class Company extends Model
             }
 
             $idCompany = $this->insert(self::$table, $this->safe());
+            
             if ($this->fail()) {
                 $this->message()->error("Não foi possível cadastrar a empresa!");
                 return null;
@@ -180,7 +185,7 @@ class Company extends Model
     }
 
     /**
-     * @return Company | null
+     * @return Company|null
      */
     public function destroy(): ?Company 
     {

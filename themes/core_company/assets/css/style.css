@@ -703,8 +703,7 @@
 /*======= login ===== */
 .main_login{
     text-align: center;
-    margin: 40px auto;
-    color: var(--blue);
+    margin: 20px auto;
 }
 
 .main_login header{
@@ -712,40 +711,66 @@
     margin: 30px auto;
 }
 
+.main_login header h2{
+    font-weight: normal;
+}
+
 .main_login p {
     font-size: 2em;
 }
 
-.main_login_form{
-    margin: 20px auto 100px auto;
-    text-align: center;
+.main_login_form_content {
+    margin: 0px auto 160px auto;
+    max-width: 100% !important;
+    width: 500px;
+    text-align: left;
+    color: #000;
 }
 
-.main_login_form button{
-    font-size: 1.4em;
+.main_login_form_content form{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100% !important;
 }
 
-.main_login_form form .main_login_campus{
-    color: var(--blue);
-    font-size: 1.8em;
+.main_login_form_content form .main_login_campus{
+    margin: 10px auto 20px auto;
+    flex-basis: 100%;
+    overflow: hidden;
     display: flex;
     flex-wrap: wrap;
 }
 
-.main_login_form form .main_login_campus label{
+.main_login_form_content form .main_login_campus label{
+    margin: 10px auto 5px auto;
+    font-size: 0.875em;
+    font-weight: 400;
     flex-basis: 100%;
-    margin: 15px auto;
+    text-align: left;
 }
 
-.main_login_form form .main_login_campus input{
-    flex-basis: 50%;
-    margin: 20px auto;
-    border-bottom: 3px solid var(--blue);
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    outline: none;
-    text-align: center;
+
+.main_login_form_content form .main_login_campus input{
+    flex-basis: 100%;
+    padding: 15px 30px;
+    margin: 5px auto 0px auto;
+    border-radius: 8px;
+    -moz-border-radiu:8px;
+    -webkit-border-radius:8px;
+    border: 1px solid #ccc;
+    text-align:left !important;
+    overflow: hidden;
+}
+
+.main_login_form_content form button{
+    flex-basis: 100%;
+    padding: 15px 30px;
+    margin-top: 10px;
+    font-size: 1.4em;
+    font-weight: 700;
+    border-radius: 8px;
+    -moz-border-radiu:8px;
+    -webkit-border-radius:8px;
 }
 
 /*======== OPTIN SUCCESS =========*/
