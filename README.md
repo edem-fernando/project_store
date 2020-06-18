@@ -1,2 +1,2 @@
 # project_store
-Aqui ficará uma loja virtual
+Todo o front do site de visitas fica aqui.
